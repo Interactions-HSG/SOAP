@@ -2,7 +2,8 @@
 
 SOAP was designed to collect and analyze data from Very Large Online Platforms (VLOPs).
 
-The source code currently resides here: [github.com/LukaBekavac/SOAP](https://github.com/LukaBekavac/SOAP) and will be transferred to this repo soon.
+> [!NOTE]
+> The source code of SOAP currently resides here: [github.com/LukaBekavac/SOAP](https://github.com/LukaBekavac/SOAP) and will be transferred to this repo soon.
 
 ## ✉️ Contact
 
