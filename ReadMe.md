@@ -1,6 +1,6 @@
-# SOAP Instruction
+# SOAP - System for Analyzing and Observing Posts
 
-**Repository for Paper:**  
+This repository contains the source code for the SOAP system, as described in this paper:  
 [*From Walls to Windows: Creating Transparency to Understand Filter Bubbles in Social Media*](https://www.alexandria.unisg.ch/entities/publication/f41060db-3d3b-4071-ad92-8ac6bb1cc734/details)  
 Proceedings of the Second Workshop on the Normative Design and Evaluation of Recommender Systems (NORMalize 2024), co-located with the 18th ACM Conference on Recommender Systems (RecSys 2024), Bari, Italy, October 18, 2024.
 
