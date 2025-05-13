@@ -1,5 +1,5 @@
 matplotlib==3.7.2
-numpy==1.24.3
+numpy>=1.25.0
 streamlit
 google-cloud-storage
 vertexai
