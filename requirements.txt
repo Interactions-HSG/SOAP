@@ -1,5 +1,5 @@
-matplotlib==3.7.2
-numpy>=1.25.0
+matplotlib==3.8.4
+numpy==1.26.4
 streamlit
 google-cloud-storage
 vertexai
@@ -9,5 +9,5 @@ pyktok
 python-dotenv
 pillow
 imageio
-pandas
+pandas==1.5.3
 plotly
