@@ -1,9 +1,11 @@
 import streamlit as st
 import uuid
-from .poll_db import PollDatabase
+import importlib
 
 def get_db():
     """Get a fresh database connection for the current thread."""
+    # Use dynamic import to avoid circular import issues
+    from .poll_db import PollDatabase
     return PollDatabase()
 
 def initialize_session():
