@@ -43,7 +43,7 @@ else:
     st.info("SOAP system diagram not found. The diagram would show the architecture of a sock puppet auditing system.")
 
 # Main sections as expandable elements
-with st.expander("A. Scraping Techniques", expanded=True):
+with st.expander("A. Scraping Techniques", expanded=False):
     st.header("Scraping Techniques")
     
     st.markdown("""
@@ -177,7 +177,7 @@ with st.expander("B. Deductive Coding", expanded=False):
     observations without actionable insights.
     """)
 
-with st.expander("C. Personas & Sockpuppets", expanded=True):
+with st.expander("C. Personas & Sockpuppets", expanded=False):
     st.header("Personas & Sockpuppets")
     
     st.markdown("""

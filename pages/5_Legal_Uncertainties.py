@@ -32,7 +32,7 @@ must consider when designing platform audits:
 """)
 
 # Terms of Service & Automated Behavior
-with st.expander("A. Terms of Service & Automated Behavior", expanded=True):
+with st.expander("A. Terms of Service & Automated Behavior", expanded=False):
     st.subheader("Terms of Service & Automated Behavior")
     
     st.markdown("""
@@ -68,7 +68,7 @@ with st.expander("A. Terms of Service & Automated Behavior", expanded=True):
     """)
 
 # GDPR & Personal Data Scraping
-with st.expander("B. GDPR & Scraping Personal Data", expanded=True):
+with st.expander("B. GDPR & Scraping Personal Data", expanded=False):
     st.subheader("GDPR & Scraping Personal Data")
     
     st.markdown("""

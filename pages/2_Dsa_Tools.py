@@ -52,7 +52,7 @@ with tab1:
     - Targeting parameters used
     - Total number of recipients reached
     
-    The TikTok Ad Library is a real example of a DSA-compliant ad repository that researchers can use.
+    The TikTok Ad Library is an example of a DSA ad repository that researchers can use.
     """)
     
     # Add TikTok Ad Library link with screenshot
@@ -63,23 +63,6 @@ with tab1:
     
     **[Open TikTok Ad Library in a New Tab](https://library.tiktok.com/ads)** 👈 Click here to explore the actual repository
     """)
-    
-    # Display an image of the TikTok Ad Library instead of embedding it
-    st.markdown("### Screenshot of TikTok Ad Library")
-    
-    # Check if we have a screenshot image in the data folder, if not display a placeholder
-    tiktok_screenshot_path = os.path.join("data", "tiktok_ad_library.png")
-    if os.path.exists(tiktok_screenshot_path):
-        image = Image.open(tiktok_screenshot_path)
-        st.image(image, caption="TikTok Ad Library Interface", use_container_width=True)
-    else:
-        st.info("""
-        **TikTok Ad Library Screenshot**
-        
-        A screenshot would normally appear here showing the TikTok Ad Library interface. 
-        
-        You can visit https://library.tiktok.com/ads to explore the actual repository.
-        """)
     
     # Add information about limitations
     st.markdown("""
@@ -161,23 +144,7 @@ with tab2:
     **[Open DSA Transparency Database in a New Tab](https://transparency.dsa.ec.europa.eu/statement)** 👈 Click here to explore the actual repository
     """)
     
-    # Display an image or placeholder for the Transparency Database
-    st.markdown("### Screenshot of DSA Transparency Database")
-    
-    # Check if we have a screenshot image in the data folder, if not display a placeholder
-    transparency_screenshot_path = os.path.join("data", "dsa_transparency_database.png")
-    if os.path.exists(transparency_screenshot_path):
-        image = Image.open(transparency_screenshot_path)
-        st.image(image, caption="DSA Transparency Database Interface", use_container_width=True)
-    else:
-        st.info("""
-        **DSA Transparency Database Screenshot**
-        
-        A screenshot would normally appear here showing the DSA Transparency Database interface.
-        
-        You can visit https://transparency.dsa.ec.europa.eu/statement to explore the actual repository.
-        """)
-    
+   
     # Add information about the tradeoffs
     st.markdown("""
     ### Public Accessibility vs. Complete Information
@@ -238,22 +205,6 @@ with tab3:
     👉 **[Access the DSA40 Data Access Tracker](https://www.soscisurvey.de/DSA40applications/)**
     """)
     
-    # Display an image or placeholder for the Research API
-    st.markdown("### Screenshot of TikTok Research API Documentation")
-    
-    # Check if we have a screenshot image in the data folder, if not display a placeholder
-    api_screenshot_path = os.path.join("data", "tiktok_research_api.png")
-    if os.path.exists(api_screenshot_path):
-        image = Image.open(api_screenshot_path)
-        st.image(image, caption="TikTok Research API Documentation", use_container_width=True)
-    else:
-        st.info("""
-        **TikTok Research API Screenshot**
-        
-        A screenshot would normally appear here showing the TikTok Research API documentation.
-        
-        You can visit https://developers.tiktok.com/products/research-api/ to explore the actual API documentation.
-        """)
     
     st.markdown("""
     ### Requirements for API Access

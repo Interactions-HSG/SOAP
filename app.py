@@ -1,6 +1,8 @@
 import streamlit as st
 import os
-from PIL import Image
+from PIL import Image, ImageOps # Import ImageOps
+from io import BytesIO
+import base64
 from database.poll_responses.session_management import initialize_session
 
 # Initialize user session - this creates or retrieves a unique user ID
@@ -13,6 +15,50 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# Function to load and style images
+def load_styled_image(image_path, size=150, border_radius="50%", vertical_shift_px=0): # Added vertical_shift_px
+    if os.path.exists(image_path):
+        try:
+            img = Image.open(image_path)
+            img_w, img_h = img.size
+            target_s = float(size)
+
+            # Determine scaled dimensions and excess for centering adjustment
+            img_aspect = img_w / img_h
+            target_aspect = 1.0 # Target is square
+
+            centering_y = 0.5 # Default vertical centering
+
+            if vertical_shift_px != 0:
+                # Apply shift only if image is taller than target aspect (vertical cropping occurs)
+                if img_aspect < target_aspect: 
+                    # Image is scaled based on width to target_s
+                    # scaled_w = target_s
+                    scaled_h = img_h * (target_s / img_w)
+                    if scaled_h > target_s: # Check if there's excess height to crop
+                        excess_h = scaled_h - target_s
+                        if excess_h > 0: # Avoid division by zero if somehow excess_h is not positive
+                            centering_y = 0.5 + (vertical_shift_px / excess_h)
+            
+            # Clamp centering_y to be between 0.0 and 1.0
+            centering_y = max(0.0, min(1.0, centering_y))
+            
+            centering_tuple = (0.5, centering_y) # Horizontal centering remains 0.5
+
+            # Resize and crop image to fit while maintaining aspect ratio, using adjusted centering
+            img = ImageOps.fit(img, (size, size), Image.Resampling.LANCZOS, centering=centering_tuple)
+            
+            # Convert image to base64
+            buffered = BytesIO()
+            img.save(buffered, format="PNG") # Save as PNG to support transparency if any
+            img_str = base64.b64encode(buffered.getvalue()).decode()
+            
+            # HTML for styled image
+            return f'<img src="data:image/png;base64,{img_str}" style="width:{size}px; height:{size}px; border-radius:{border_radius}; object-fit:cover;">' # Removed extra_style from f-string
+        except Exception as e:
+            return f"Error loading image {image_path}: {e}"
+    return ""
 
 # Display centered CPDP logo at the top
 if os.path.exists("data/cpdp2025-long.svg"):
@@ -41,14 +87,7 @@ st.markdown("""
 ## Workshop Overview
 
 This 80-minute workshop guides participants through auditing social media platforms using both 
-official DSA-compliant methods and alternative data access techniques. Our CoCoDa project 
-focuses on opening up the concentration and control of data by VLOPs and VLOSEs.
-
-### Use Case: 
-*Examining how political content is amplified and moderated on social media platforms during election periods.*
-
-This interactive application provides tools and demonstrations for each phase of the workshop.
-""")
+official DSA-compliant methods and alternative data access techniques. The aim is to give Participants a hollistic overview of current data access methodologies used by researchers and the public for auditing Social Media Platforms.""")
 
 # Presenters section - moved up and styled artistically
 st.markdown("""
@@ -62,30 +101,35 @@ st.markdown("""
 # Display presenters with photos in 2 rows of 2 columns with equal sizing
 col1, col2 = st.columns(2)
 
-image_height = 200  # Fixed height for all images
+image_display_size = 150 # Define a common size for styled images
 
 with col1:
     with st.container():
         st.subheader("Contact Person")
         col_img, col_info = st.columns([1, 2])
         with col_img:
-            if os.path.exists("data/aurelia.jpg"):
-                st.image("data/aurelia.jpg", width=image_height)
+            styled_image_html = load_styled_image("data/aurelia.jpg", size=image_display_size)
+            if styled_image_html:
+                st.markdown(styled_image_html, unsafe_allow_html=True)
         with col_info:
             st.markdown("**Prof. Dr. Aurelia Tamo-Larrieux**")
             st.markdown("University of Lausanne (Switzerland)")
-            st.markdown("Email: aurelia.tamo-larrieux@unil.ch")
+            st.markdown("Aurelia Tamò-Larrieux is an Associate Professor at the University of Lausanne (UNIL), Faculty of Law, heading the team of Digital and Computational Law and leading the Legal Design & Code Lab. She is also a lecturer at EPFL, teaching Law and Computation to engineers and computer scientists.")
+            st.markdown("[Profile](https://www.cpdpconferences.org/persons/aurelia-tamo-larrieux-university-of-lausanne) | [LinkedIn](https://www.linkedin.com/in/aurelia-tamo-larrieux-81a31130b/) | [Website](https://wp.unil.ch/legaldesignandcodelab/)")
 
 with col2:
     with st.container():
         st.subheader("Facilitator")
         col_img, col_info = st.columns([1, 2])
         with col_img:
-            if os.path.exists("data/Konrad.jpeg"):
-                st.image("data/Konrad.jpeg", width=image_height)
+            styled_image_html = load_styled_image("data/Konrad.jpeg", size=image_display_size)
+            if styled_image_html:
+                st.markdown(styled_image_html, unsafe_allow_html=True)
         with col_info:
             st.markdown("**Prof. Dr. Konrad Kollnig**")
             st.markdown("Maastricht University (Netherlands)")
+            st.markdown("Konrad Kollnig is assistant professor at the Law & Tech Lab of Maastricht University’s Law Faculty. He particularly focuses on the future of AI regulation (in leading the RegTech4AI project with 5 researchers), holding online platforms to account (in the co-leading the CoCoDa project across the UK, Switzerland and the EU) and building a more resilient digital infrastructure (in his latest book).")
+            st.markdown("[Profile](https://www.cpdpconferences.org/persons/konrad-kollnig-maastricht-university) | [LinkedIn](https://www.linkedin.com/in/kkollnig/)")
 
 col3, col4 = st.columns(2)
 
@@ -94,22 +138,29 @@ with col3:
         st.subheader("Host")
         col_img, col_info = st.columns([1, 2])
         with col_img:
-            if os.path.exists("data/Luka.jpg"):
-                st.image("data/Luka.jpg", width=image_height)
+            styled_image_html = load_styled_image("data/Luka.jpg", size=image_display_size)
+            if styled_image_html:
+                st.markdown(styled_image_html, unsafe_allow_html=True)
         with col_info:
             st.markdown("**Luka Bekavac**")
             st.markdown("University of St. Gallen (Switzerland)")
+            st.markdown("Luka Bekavac is a doctoral candidate at the University of St. Gallen. His research focuses on understanding and addressing the systemic risks posed by Very Large Online Platforms, combining methods from computer science, tech law and social sciences to study how platforms personalized recommender systems influence us, while developing tools to enhance transparency and accountability in their operation.")
+            st.markdown("[Profile](https://www.cpdpconferences.org/persons/luka-bekavac-university-of-st-gallen) | [LinkedIn](https://www.linkedin.com/in/luka-bekavac-80285a1b2/)")
 
 with col4:
     with st.container():
         st.subheader("Facilitator")
         col_img, col_info = st.columns([1, 2])
         with col_img:
-            if os.path.exists("data/Simon.png"):
-                st.image("data/Simon.png", width=image_height)
+            # Apply vertical_shift_px to Simon Mayer's image
+            styled_image_html = load_styled_image("data/Simon.png", size=image_display_size, vertical_shift_px=-20)
+            if styled_image_html:
+                st.markdown(styled_image_html, unsafe_allow_html=True)
         with col_info:
             st.markdown("**Prof. Dr. Simon Mayer**")
             st.markdown("University of St. Gallen (Switzerland)")
+            st.markdown("Simon Mayer is a Full Professor in Computer Science at the University of St. Gallen (HSG). He is fascinated by the integration of concepts and approaches from across the fields of pervasive computing, hypermedia, human-computer interaction, and embedded systems to realize ideal interfaces between machines and animals.")
+            st.markdown("[Profile](https://www.cpdpconferences.org/persons/simon-mayer-university-of-st-gallen) | [Website](https://ics.unisg.ch/chairs/simon-mayer-interaction-and-communication-based-systems/)")
 
 # Add a Picasso-inspired decorative element
 st.markdown("""
@@ -124,6 +175,11 @@ st.markdown("""
 ## CoCoDa Project
 Our work is part of the [CoCoDa project](https://snsf-cocoda.github.io/), which builds tools to open up 
 the concentration and control of data by VLOPs and VLOSEs.
+
+The project aims to:
+- Combine technical data access methods with legal innovations like the Digital Services Act.
+- Develop techno-legal tools that empower researchers, regulators, and civil society.
+- Focus on real-world use cases in social media and mobile apps.
 """)
 
 # Workshop structure with links to subpages
@@ -180,13 +236,20 @@ for i, (section, details) in enumerate(workshop_sections.items()):
 # Brief explanation of the navigation
 st.info("👈 You can also use the sidebar to navigate between workshop sections.")
 
+# Data Collection Disclaimer
+st.markdown("""
+## Data Collection & Privacy
+
+During this workshop, we will be collecting some data through interactive polls and surveys. 
+
+- **All data collected is anonymized.** We do not link your responses to any personal identifiers.
+- **Your participation is voluntary.** If you prefer not to have your data collected, you can simply choose not to fill out the surveys or polls presented during the workshop.
+- **Please keep this website open** throughout the workshop to ensure your anonymous session remains active and any contributions you choose to make are recorded correctly.
+- At the end of the workshop, there will be an **option to provide your email address if you would like to share feedback or get in touch** with the presenters. This is entirely optional.
+
+Your engagement helps us understand the effectiveness of these tools and methods. Thank you for your participation!
+""")
+
 # Footer with information about the data sources
 st.markdown("---")
-st.markdown("### Data Sources")
-st.markdown("""
-This workshop uses both real and simulated data to demonstrate auditing techniques:
-- Sample data from TikTok and other platforms
-- Simulated DSA transparency database entries
-- Mock API responses based on real platform behaviors
-- SOAP (Sock Puppet Auditing Protocol) demonstration results
-""")
+

@@ -129,13 +129,6 @@ with platform_tab1:
        - Look for metadata about why content was recommended
     """)
     
-    # Image showing Instagram data download interface
-    instagram_image_path = os.path.join("data", "instagram_download.png")
-    if os.path.exists(instagram_image_path):
-        st.image(instagram_image_path, caption="Instagram Data Download Interface", use_container_width=True)
-    else:
-        st.info("The image of Instagram's data download interface would be displayed here.")
-
 with platform_tab2:
     st.subheader("Requesting Data from TikTok")
     
