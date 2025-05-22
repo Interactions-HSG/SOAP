@@ -105,21 +105,10 @@ with tab1:
             <li>👉🏼 A function that allows the public to search comprehensively for advertisement</li>
         </ul>
         <p><em>May 2025: The Commission has found TikTok's ad repository does not meet DSA requirements for transparency and data access.</em></p>
+        <p><a href="https://digital-strategy.ec.europa.eu/en/news/commission-preliminarily-finds-tiktoks-ad-repository-breach-digital-services-act" target="_blank">Read the official Commission announcement</a></p>
     </div>
     """, unsafe_allow_html=True)
-    
-    # Add embedded PDF
-    ec_tiktok_pdf = os.path.join("data", "EC-TikTok-breach.pdf")
-    if os.path.exists(ec_tiktok_pdf):
-        st.markdown("### European Commission's Statement on TikTok DSA Breach")
-        st.markdown("Click below to view the full EC determination on TikTok's ad repository non-compliance:")
-        
-        # Create HTML to embed PDF using iframe
-        pdf_display = f'''
-            <iframe src="data:application/pdf;base64,{base64.b64encode(open(ec_tiktok_pdf, "rb").read()).decode('utf-8')}"
-                    width="700" height="500" type="application/pdf"></iframe>
-        '''
-        st.markdown(pdf_display, unsafe_allow_html=True)
+
     
 
 # Tab 2: Transparency Database
