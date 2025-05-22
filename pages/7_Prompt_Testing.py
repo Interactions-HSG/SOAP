@@ -47,27 +47,90 @@ class StreamlitPromptTester:
                 import json
                 import tempfile
                 
-                # Create a temporary credentials file
-                creds = st.secrets['gcp_service_account']
-                with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as temp:
-                    json.dump(creds, temp)
-                    temp_creds_path = temp.name
-                
-                # Set the credentials path in environment
-                os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = temp_creds_path
-                st.info(f"Using credentials from Streamlit secrets")
+                # Method 1: Try direct initialization with service account credentials
+                try:
+                    from google.oauth2 import service_account
+                    
+                    # Convert secrets to correct format if needed
+                    if isinstance(st.secrets['gcp_service_account'], dict):
+                        credentials = service_account.Credentials.from_service_account_info(
+                            st.secrets['gcp_service_account']
+                        )
+                    else:
+                        # Handle AttrDict or other types by converting to dict
+                        cred_dict = {}
+                        for key in st.secrets['gcp_service_account']:
+                            cred_dict[key] = st.secrets['gcp_service_account'][key]
+                        credentials = service_account.Credentials.from_service_account_info(cred_dict)
+                    
+                    # Initialize with credentials object directly
+                    vertexai.init(
+                        project=self.project,
+                        location="us-central1",
+                        credentials=credentials
+                    )
+                    st.info("Initialized using direct credentials approach")
+                    self.model = GenerativeModel("gemini-1.5-flash")
+                    self.model_initialized = True
+                except Exception as direct_e:
+                    st.warning(f"Direct initialization failed: {direct_e}")
+                    
+                    # Method 2: Try the temp file approach as fallback
+                    try:
+                        # Safely extract keys from credentials and recreate a clean dict
+                        cred_dict = {}
+                        for key, value in dict(st.secrets['gcp_service_account']).items():
+                            if isinstance(value, (str, int, bool, list, dict)):
+                                cred_dict[key] = value
+                            else:
+                                # Convert non-serializable types to string
+                                cred_dict[key] = str(value)
+                        
+                        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as temp:
+                            json.dump(cred_dict, temp)
+                            temp_creds_path = temp.name
+                        
+                        # Set the credentials path in environment
+                        os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = temp_creds_path
+                        st.info(f"Using credentials from Streamlit secrets via temporary file")
+                        
+                        # Initialize Vertex AI with project and location
+                        vertexai.init(
+                            project=self.project,
+                            location="us-central1",
+                        )
+                        self.model = GenerativeModel("gemini-1.5-flash")
+                        self.model_initialized = True
+                    except Exception as temp_e:
+                        st.error(f"Temp file approach failed: {temp_e}")
+                        raise
+            
             # Otherwise check if GOOGLE_APPLICATION_CREDENTIALS is set locally
             elif 'GOOGLE_APPLICATION_CREDENTIALS' in os.environ:
                 st.info(f"Using credentials from local environment: {os.environ['GOOGLE_APPLICATION_CREDENTIALS']}")
+                
+                # Initialize Vertex AI with project and location
+                vertexai.init(
+                    project=self.project,
+                    location="us-central1",
+                )
+                self.model = GenerativeModel("gemini-1.5-flash")
+                self.model_initialized = True
             
-            # Initialize Vertex AI with project and location
-            vertexai.init(
-                project=self.project,
-                location="us-central1",
-            )
-            self.model = GenerativeModel("gemini-1.5-flash")
-            self.model_initialized = True
-            st.success("Connected to Vertex AI successfully!")
+            # If no credentials source found yet, try default credentials
+            else:
+                st.info("Using default application credentials")
+                vertexai.init(
+                    project=self.project,
+                    location="us-central1",
+                )
+                self.model = GenerativeModel("gemini-1.5-flash")
+                self.model_initialized = True
+                
+            # Only show success if we haven't raised an exception
+            if self.model_initialized:
+                st.success("Connected to Vertex AI successfully!")
+                
         except Exception as e:
             st.error(f"Failed to initialize Vertex AI: {e}")
             st.info("Attempting to use already initialized VertexAI connection if available...")
