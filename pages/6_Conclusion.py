@@ -41,36 +41,6 @@ for topic, description in reflections.items():
         st.markdown(description)
 
 
-# Future directions
-st.header("Future Directions")
-
-st.markdown("""
-### Evolving Landscape of Platform Auditing
-
-As the field of algorithm auditing continues to develop, several important developments are on the horizon:
-""")
-
-future_directions = {
-    "Regulatory Evolution": "The DSA implementation will continue to evolve, potentially expanding researcher access rights and platform obligations.",
-    "Technical Countermeasures": "Platforms may develop more sophisticated methods to detect and prevent alternative auditing techniques.",
-    "Method Standardization": "The research community may develop standardized protocols for alternative auditing methods to increase legitimacy and comparability.",
-    "Legal Clarification": "Court cases and regulatory decisions will likely clarify the legal boundaries of scraping and sock puppet methods.",
-    "Multi-stakeholder Initiatives": "New collaborations between researchers, platforms and regulators may create sanctioned spaces for algorithmic investigation."
-}
-
-col1, col2 = st.columns(2)
-
-for i, (topic, description) in enumerate(future_directions.items()):
-    if i < 3:
-        with col1:
-            st.markdown(f"**{topic}**")
-            st.markdown(description)
-            st.markdown("")
-    else:
-        with col2:
-            st.markdown(f"**{topic}**")
-            st.markdown(description)
-            st.markdown("")
 
 # Policy gaps discussion
 st.subheader("Addressing Policy Gaps")
@@ -125,64 +95,28 @@ with col2:
     if application and application != prev_application:
         save_poll_response("workshop_application", "conclusion", application)
 
-# Final resources
-st.header("Additional Resources")
-
-st.markdown("""
-### Further Reading
-
-To continue exploring platform auditing techniques and regulatory frameworks:
-
-- **[Digital Services Act Full Text](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32022R2065)** - Official EU regulation text
-- **[Algorithm Watch Guidelines](https://algorithmwatch.org/en/automated-decision-making-systems-explained/)** - Best practices for algorithm auditing
-- **[Mozilla Foundation's Platform Accountability Resources](https://foundation.mozilla.org/en/internet-health/platform-accountability/)** - Tools and frameworks
-- **[Ethics in Algorithm Auditing](https://doi.org/10.1145/3351095.3372873)** - Academic paper on ethical considerations in auditing
-- **[Platform Governance Archive](https://platformgovernancearchive.org/)** - Historical repository of platform policies
-""")
 
 # Workshop evaluation
 st.header("Workshop Evaluation")
 
-st.markdown("Please take a moment to evaluate this workshop:")
+st.markdown("Please take a moment to provide feedback on this workshop:")
 
-# Get previous evaluation responses
+# Get previous feedback response
 prev_evaluation = get_response_for_poll("workshop_evaluation")
 if prev_evaluation and isinstance(prev_evaluation, dict):
-    prev_satisfaction = prev_evaluation.get("satisfaction", 4)
-    prev_relevance = prev_evaluation.get("content_relevance", 4)
-    prev_presentation = prev_evaluation.get("presentation", 4)
-    prev_interactive = prev_evaluation.get("interactive_elements", 4)
     prev_feedback = prev_evaluation.get("feedback", "")
 else:
-    prev_satisfaction = 4
-    prev_relevance = 4
-    prev_presentation = 4
-    prev_interactive = 4
     prev_feedback = ""
 
-col1, col2 = st.columns(2)
+feedback = st.text_area("Your feedback and suggestions:", value=prev_feedback)
 
-with col1:
-    satisfaction = st.slider("Overall satisfaction", 1, 5, prev_satisfaction)
-    content_relevance = st.slider("Content relevance", 1, 5, prev_relevance)
-    
-with col2:
-    presentation = st.slider("Quality of presentation", 1, 5, prev_presentation)
-    interactive_elements = st.slider("Interactive elements", 1, 5, prev_interactive)
-
-feedback = st.text_area("Additional feedback or suggestions:", value=prev_feedback)
-
-# Save all evaluation responses when the button is clicked
-if st.button("Submit Evaluation"):
+# Save feedback response when the button is clicked
+if st.button("Submit Feedback"):
     evaluation_data = {
-        "satisfaction": satisfaction,
-        "content_relevance": content_relevance,
-        "presentation": presentation,
-        "interactive_elements": interactive_elements,
         "feedback": feedback
     }
     
-    # Save the complete evaluation data
+    # Save the feedback data
     save_poll_response("workshop_evaluation", "conclusion", evaluation_data)
     
     st.success("Thank you for your feedback!")

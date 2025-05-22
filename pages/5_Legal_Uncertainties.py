@@ -61,10 +61,6 @@ with st.expander("A. Terms of Service & Automated Behavior", expanded=False):
     4. **Public Interest Defense**: Preparing public interest justifications for ToS violations
     5. **Technical Obfuscation**: Designing systems that minimize detection of automated behavior
     
-    ### Case Precedents
-    
-    - **HiQ Labs v. LinkedIn**: US case suggesting scraping publicly available data may not violate CFAA
-    - **Van Buren v. United States**: Narrowed CFAA interpretation regarding "exceeding authorized access"
     """)
 
 # GDPR & Personal Data Scraping
@@ -128,12 +124,6 @@ with st.expander("C. Computer Fraud and Abuse Act (US) / Cybercrime Laws (EU)", 
     3. **Institutional Approval**: Securing formal institutional approval for methods
     4. **Transparency**: Being open about research methods with platforms when possible
     5. **Jurisdictional Considerations**: Understanding different interpretations across jurisdictions
-    
-    ### Recent Developments
-    
-    - **Van Buren v. United States (2021)**: US Supreme Court narrowed CFAA interpretation
-    - **EU Cybercrime Convention**: Ongoing discussions about research exemptions
-    - **CNIL (France) Guidelines**: Provides some guidance on scraping for research
     """)
 
 # Sock Puppet Risks
@@ -178,131 +168,8 @@ with st.expander("D. Misuse of SOAP & Ethical Concerns", expanded=False):
     - Collaboration with legal authorities when necessary
     """)
 
-# Legal Risk Assessment Framework
-st.header("Assessing Legal Risk in Research Methods")
-
-# Create a risk matrix
-risk_data = {
-    "Method": [
-        "DSA Ads Repository Analysis",
-        "Transparency Database Review",
-        "Research API Access",
-        "GDPR Data Donation Analysis",
-        "Public Profile Scraping",
-        "Automated Content Scraping",
-        "Sock Puppet Implementation (Passive)",
-        "Sock Puppet Implementation (Active)"
-    ],
-    "ToS Risk": [
-        "Very Low",
-        "Very Low",
-        "Very Low",
-        "Low",
-        "Medium",
-        "High",
-        "High",
-        "Very High"
-    ],
-    "GDPR Risk": [
-        "Very Low",
-        "Very Low",
-        "Low",
-        "Low",
-        "Medium",
-        "High",
-        "Medium",
-        "High"
-    ],
-    "CFAA/Cybercrime Risk": [
-        "Very Low",
-        "Very Low",
-        "Very Low",
-        "Very Low",
-        "Low-Medium",
-        "Medium-High",
-        "Medium",
-        "High"
-    ],
-    "Ethical Concerns": [
-        "Very Low",
-        "Very Low",
-        "Low",
-        "Low",
-        "Low-Medium",
-        "Medium",
-        "Medium-High",
-        "High"
-    ]
-}
-
-risk_df = pd.DataFrame(risk_data)
-
-# Display the risk matrix
-st.subheader("Legal Risk Matrix by Research Method")
-st.dataframe(risk_df, use_container_width=True)
-
-# Risk mitigation strategies
-st.header("Risk Mitigation Strategies")
-
-st.markdown("""
-### Approaches to Reducing Legal Uncertainty
-
-Researchers can take several steps to mitigate legal risks while conducting platform audits:
-""")
-
-mitigation_strategies = {
-    "Legal Consultation": "Engage with legal experts specializing in digital research methods",
-    "Research Design": "Design studies to minimize legal exposure while maintaining validity",
-    "Documentation": "Maintain detailed records of decision-making processes and justifications",
-    "Institutional Approval": "Secure formal ethics approval from research institutions",
-    "Transparency": "Be open about methods where possible without compromising research",
-    "Data Protection": "Implement robust data anonymization and security measures",
-    "Multi-method Approach": "Combine higher and lower risk methods to validate findings",
-    "Jurisdictional Considerations": "Account for legal differences across jurisdictions",
-    "Collaboration": "Partner with platforms where possible to reduce adversarial dynamics"
-}
-
-col1, col2 = st.columns(2)
-
-for i, (strategy, description) in enumerate(mitigation_strategies.items()):
-    if i < len(mitigation_strategies) // 2:
-        with col1:
-            st.markdown(f"**{strategy}**: {description}")
-    else:
-        with col2:
-            st.markdown(f"**{strategy}**: {description}")
 
 
-# Recent case studies
-st.header("Recent Legal Precedents in Platform Research")
-
-st.markdown("""
-Several recent cases have helped clarify the legal landscape for researchers:
-""")
-
-cases = [
-    {
-        "Case": "HiQ Labs v. LinkedIn (US)",
-        "Year": "2022",
-        "Significance": "Suggested that scraping publicly available data may not violate the Computer Fraud and Abuse Act (CFAA)",
-        "Impact": "Potentially limited platforms' ability to use CFAA to block research scraping of public data"
-    },
-    {
-        "Case": "Van Buren v. United States (US)",
-        "Year": "2021",
-        "Significance": "Narrowed the interpretation of 'exceeding authorized access' under CFAA",
-        "Impact": "Reduced risk that ToS violations alone could trigger CFAA liability"
-    },
-    {
-        "Case": "Clearview AI regulatory actions (EU)",
-        "Year": "2021-2023",
-        "Significance": "Multiple EU data protection authorities ruled against facial recognition database built on scraped images",
-        "Impact": "Established limits on bulk scraping of personal data, even from public sources"
-    }
-]
-
-cases_df = pd.DataFrame(cases)
-st.dataframe(cases_df, use_container_width=True)
 
 # Conclusion
 st.header("Balancing Research Needs with Legal Compliance")

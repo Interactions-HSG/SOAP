@@ -17,7 +17,7 @@ col1, col2 = st.columns([6, 1])
 # Display the title in the first column
 with col1:
     st.title("4. SOAP and Scraping")
-    st.subheader("Systematic Observation of Algorithms and Platforms")
+    st.subheader("System for Observing and Analyzing Posts")
 
 # Display the SOAP icon in the second column
 with col2:
@@ -28,9 +28,10 @@ with col2:
 
 # Introduction to SOAP
 st.markdown("""
-SOAP (Systematic Observation of Algorithms and Platforms) is a methodology that combines various techniques to audit social media platforms
-in ways that aren't possible through official data access methods. This approach allows researchers to observe how 
-platforms behave in the wild, particularly how their algorithms respond to different user profiles and behaviors.
+SOAP (System for Observing and Analyzing Posts) is a methodology that combines various techniques to enable direct audits of recommendation algorithms 
+and social media platforms in ways that aren't possible through official data access methods. This approach allows researchers to observe how 
+platforms behave in the wild, particularly how their algorithms respond to different user profiles and behaviors, providing unique visibility 
+into the mechanisms that determine what content users see and why.
 
 This section explores the key components of SOAP and how they can be implemented for platform research.
 """)
@@ -137,47 +138,7 @@ with st.expander("A. Scraping Techniques", expanded=False):
     For specific code examples, please refer to documentation for tools like Instagrapi or check the workshop resources.
     """)
 
-with st.expander("B. Deductive Coding", expanded=False):
-    st.header("Deductive Coding")
-    
-    st.markdown("""
-    ### The Role of Deductive Coding in SOAP
-    
-    Deductive coding is a systematic approach to analyzing platform behavior based on pre-defined 
-    categories and hypotheses. In the context of SOAP, it helps researchers:
-    
-    - Identify patterns in algorithmic responses to specific behaviors
-    - Categorize content recommendation strategies
-    - Test hypotheses about platform algorithms
-    - Quantify observed platform behaviors
-    
-    #### Coding Framework Development
-    
-    1. **Define Research Questions**: Start with clear questions about platform behavior
-    2. **Develop Code Categories**: Create categories based on existing theories and knowledge
-    3. **Set Coding Rules**: Establish clear criteria for categorizing observations
-    4. **Test Reliability**: Ensure consistent application of codes across researchers
-    5. **Implement Systematic Coding**: Apply framework to collected data
-    6. **Analyze Patterns**: Identify significant patterns in coded data
-    
-    #### Example: Coding Political Content Recommendations
-    
-    | Code Category | Definition | Example |
-    |---------------|------------|---------|
-    | Political Alignment | Content presents clear partisan perspective | Pro-party X message |
-    | Inflammatory | Content designed to provoke strong reactions | Outrage-focused political attack |
-    | Informational | Neutral presentation of facts or events | Election date announcement |
-    | Call to Action | Content urging specific political behavior | "Vote for candidate Y" |
-    | Personalization | Content tailored to user's known views | "Because you follow Z..." |
-    """)
-    
-    st.info("""
-    Deductive coding provides the analytical framework that gives meaning to data collected through 
-    scraping and sock puppet methods. Without this systematic approach, the data remains merely 
-    observations without actionable insights.
-    """)
-
-with st.expander("C. Personas & Sockpuppets", expanded=False):
+with st.expander("B. Personas & Sockpuppets", expanded=False):
     st.header("Personas & Sockpuppets")
     
     st.markdown("""
@@ -230,8 +191,24 @@ with st.expander("C. Personas & Sockpuppets", expanded=False):
     
     This approach allows researchers to create a network of diverse personas with consistent behavior patterns.
     """)
+    
+    # Add prompt testing button
+    prompt_testing_col1, prompt_testing_col2 = st.columns([3,1])
+    
+    with prompt_testing_col1:
+        st.markdown("""
+        ### Try It: Prompt Testing Tool
+        
+        Experiment with our tool for analyzing sock puppet data using Google's Vertex AI.
+        Test different prompt structures to see how they can help analyze content shown to your sock puppets.
+        """)
+        
+    with prompt_testing_col2:
+        if st.button("Open Prompt Testing Tool"):
+            # This will open the prompt testing page in the pages directory
+            st.switch_page("pages/7_Prompt_Testing.py")
 
-with st.expander("D. Limitations of SOAP", expanded=False):
+with st.expander("C. Limitations of SOAP", expanded=False):
     st.header("Limitations of SOAP")
     
     st.markdown("""
@@ -273,24 +250,190 @@ with st.expander("D. Limitations of SOAP", expanded=False):
     data access methods rather than replacements. The most robust research combines 
     multiple approaches to overcome the limitations of each individual method.
     """)
-
-
-# Combining methods section
-st.header("Integrating SOAP with Official Methods")
+# Systemic risks section
+st.header("Using SOAP for Auditing Systemic Risks")
 
 st.markdown("""
-### A Comprehensive Approach to Platform Auditing
+### Applying SOAP to Address DSA Systemic Risks
 
-The most effective auditing strategies combine SOAP methods with official DSA data access
-and GDPR data donations to create a more complete picture of platform behavior:
-
-| Research Question | SOAP Methods | Official Methods | Combined Approach |
-|-------------------|-------------|------------------|-------------------|
-| Content Amplification | Observe what specific personas are shown | Access aggregate recommendation data | Compare actual delivery to stated policies |
-| User Profiling | Test how behaviors affect recommendations | Request data processing documentation | Map actual profiling against disclosed practices |
-| A/B Testing | Detect different treatments across accounts | Access platform experimentation data | Verify completeness of disclosed experiments |
-| Election Integrity | Monitor election content exposure | Analyze platform transparency reports | Compare claimed vs. observed safeguards |
+SOAP provides a robust framework for investigating the systemic risks identified under the Digital Services Act.
+Below are key applications of SOAP methodology for specific risk areas:
 """)
+
+# Create tabs for different systemic risk scenarios
+risk_tab1, risk_tab2, risk_tab3, risk_tab4 = st.tabs([
+    "Illegal Content", 
+    "Fundamental Rights", 
+    "Civic Discourse & Elections",
+    "Protection of Vulnerable Groups"
+])
+
+with risk_tab1:
+    st.subheader("Dissemination of Illegal Content")
+    
+    # Container with custom styling using st.container() and CSS
+    illegal_content_container = st.container()
+    illegal_content_container.markdown("##### Case: Instagram's Algorithmic Amplification of Harmful Networks")
+    
+    with st.container():
+        st.info("""
+        SOAP enables comprehensive analysis of how illegal content (hate speech, incitement to violence, etc.) is disseminated on platforms. By simulating user behaviors, SOAP captures the pathways through which algorithms promote or amplify harmful materials.
+        
+        **Real-world example:** The Wall Street Journal's investigation revealed how Instagram's algorithms inadvertently connected users with harmful interests, creating vast networks facilitating illegal activities.
+        
+        **Why SOAP is essential:** Illegal and harmful content often resides at the "tail of the distribution" where official APIs restrict access. SOAP captures the full lifecycle of harmful content that platforms often hide from official research channels.
+        """)
+        
+        st.markdown("**Key capabilities:**")
+        st.markdown("""
+        - Records how algorithms serve harmful content based on minor engagement signals
+        - Tracks content from initial appearance through amplification
+        - Documents platform moderation failures in real-time
+        - Measures "algorithmic reinforcement" of harmful filter bubbles
+        """)
+
+with risk_tab2:
+    st.subheader("Effects on Fundamental Rights")
+    
+    # Container with custom styling
+    rights_container = st.container()
+    rights_container.markdown("##### Case: Algorithmic Discrimination & Shadowbanning")
+    
+    with st.container():
+        st.warning("""
+        SOAP's diverse user profiles allow examination of bias in content moderation and recommendation systems, particularly how they may impact free expression and non-discrimination rights.
+        
+        **Real-world application:** Detecting "shadowbanning" - the practice where platforms limit content visibility without notifying creators, which disproportionately affects marginalized communities.
+        
+        **Why SOAP is essential:** Platforms lack transparency in communicating moderation decisions, leaving users to develop "folk theories" about algorithmic suppression. SOAP provides empirical evidence of these practices.
+        """)
+        
+        st.markdown("**Key capabilities:**")
+        st.markdown("""
+        - Creates demographically diverse sock puppets to test content treatment
+        - Compares engagement metrics across different user demographics
+        - Identifies patterns of unexplained content suppression
+        - Tests platform claims about equal treatment of diverse content
+        """)
+
+with risk_tab3:
+    st.subheader("Effects on Civic Discourse & Elections")
+    
+    # Container with custom styling
+    election_container = st.container()
+    election_container.markdown("##### Case: Romanian Election Interference on TikTok")
+    
+    with st.container():
+        st.error("""
+        SOAP is particularly well-suited for studying algorithmic influences on electoral processes, like the Romanian presidential election case study we've examined.
+        
+        **Real-world application:** Investigating how platforms like TikTok may have amplified coordinated inauthentic behavior that promoted previously unknown candidates, as happened in Romania.
+        
+        **Why SOAP is essential:** Platforms like Instagram actively throttle political content, making it difficult to study through official channels. SOAP can empirically assess how platform policies affect political discourse.
+        """)
+        
+        st.markdown("**Key capabilities:**")
+        st.markdown("""
+        - Simulates users with different political leanings to measure differential content exposure
+        - Conducts real-time audits during election periods
+        - Tests the effectiveness of platform election safeguards
+        - Analyzes how algorithmic amplification impacts electoral information ecosystems
+        - Identifies potential foreign interference through inauthentic content patterns
+        """)
+        
+        st.caption("This approach could have provided early warning of the manipulation patterns seen in the Romanian election case.")
+
+with risk_tab4:
+    st.subheader("Protection of Vulnerable Groups")
+    
+    # Container with custom styling
+    vulnerable_container = st.container()
+    vulnerable_container.markdown("##### Case: Platform Safety Features for Minors")
+    
+    with st.container():
+        st.success("""
+        SOAP enables direct audits of recommendation algorithms and how they impact vulnerable populations, particularly minors at risk of harmful content exposure.
+        
+        **Research impact:** Investigations by Amnesty International revealed how TikTok's algorithms promote self-harm content to teens, while "Recommending Toxicity" showed amplification of misogynistic content.
+        
+        **Verification need:** With DSA prohibiting personalized ads for minors and platforms claiming safety features, SOAP provides the only independent verification method.
+        """)
+        
+        st.markdown("**Key capabilities:**")
+        st.markdown("""
+        - Creating simulated teen accounts to test content exposure
+        - Verifying DSA compliance on minor protections
+        - Measuring harmful content reach
+        - Evaluating platform safety claims
+        """)
+
+# Summary section on combining methods
+st.subheader("Combining SOAP with DSA Tools")
+
+st.markdown("""
+The scenarios above demonstrate why SOAP provides critical insights that official data access methods cannot capture alone. 
+The most effective research strategies combine SOAP with official DSA tools to create a more complete picture:
+""")
+
+# Create a comparison table for SOAP and DSA tools
+st.markdown("### Complementary Approaches")
+st.markdown("""
+The recommended posts shown to sockpuppets can be directly compared with data provided through official DSA tools:
+""")
+
+comparison_df = pd.DataFrame({
+    "DSA Tool": ["Ad Transparency Database", "Research APIs", "Transparency Reports/Database"],
+    "What to Compare": [
+        "Advertisements shown to sockpuppets vs. officially declared ads", 
+        "Engagement metrics (likes, views) observed vs. reported metrics", 
+        "Content moderation patterns observed vs. reported takedowns"
+    ],
+    "Research Value": [
+        "Verify if all ads delivered to users are properly disclosed and labeled",
+        "Validate accuracy of platform metrics and cross-check scraped variables with API-provided data",
+        "Identify discrepancies in content moderation and understand what triggers enforcement actions"
+    ]
+})
+
+st.table(comparison_df)
+
+
+
+st.markdown("""
+This combined methodology allows researchers to:
+
+1. **Validate platform claims** by comparing what platforms say they do with what sockpuppets actually experience
+2. **Identify blind spots** in official data access by discovering content or patterns not visible through DSA tools
+3. **Strengthen research validity** through triangulation of multiple data sources
+4. **Document platform behaviors** comprehensively using both insider and outsider perspectives
+""")
+# Alternative Data Access Tools section
+st.header("Alternative Data Access Tools")
+    
+st.markdown("""
+### Comprehensive Directory of Platform Research Tools
+
+Below is an embedded directory of alternative tools for platform research beyond the official DSA mechanisms.
+This resource, maintained by researchers studying platform transparency, provides up-to-date information on:
+
+- Additional data access methods
+- Tools for independent platform research 
+- Community-developed resources for platform investigation
+- Alternative APIs and documentation
+
+Explore the directory to find tools that might be useful for your specific research questions:
+""")
+
+# Embed Airtable
+st.components.v1.iframe(
+    "https://airtable.com/embed/apphRmVsFpqb4xsbF/shr8tfiIMi7MafjXW/tblLtPvSzRqzk2med/viwbA8mzlE28qcI5l?blocks=hide", 
+    height=600, 
+    scrolling=True
+)
+
+st.caption("Source: Platform Research Tools Directory, maintained by the Digital Research Methods Consortium")
+
+
 
 # Navigation buttons
 st.markdown("---")

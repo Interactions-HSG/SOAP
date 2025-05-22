@@ -1,3 +1,4 @@
+import base64
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -64,6 +65,20 @@ with tab1:
     **[Open TikTok Ad Library in a New Tab](https://library.tiktok.com/ads)** 👈 Click here to explore the actual repository
     """)
     
+    # Embed Airtable with list of ad repositories
+    st.subheader("Comprehensive List of Ad Repositories")
+    
+    st.markdown("""
+    Below is a curated database of all available ad repositories from major platforms. You can explore the features, 
+    access requirements, and compare the data available from each platform.
+    """)
+    
+    # Embed the Airtable
+    st.components.v1.html("""
+    <iframe class="airtable-embed" src="https://airtable.com/embed/appnk1UgP5Kojk2iv/shrG0v9iROVmAj8rR/tblQ1o24x5wvWryM6?viewControls=on" 
+    frameborder="0" onmousewheel="" width="100%" height="533" style="background: transparent; border: 1px solid #ccc;"></iframe>
+    """, height=550)
+    
     # Add information about limitations
     st.markdown("""
     ### Key Limitations of Ad Repositories
@@ -76,46 +91,36 @@ with tab1:
     
     These gaps highlight the need for complementary research methods to fully understand the advertising ecosystem on platforms.
     """)
+
     
+    # Add TikTok DSA breach disclaimer box
     st.markdown("""
-    ### How to Use the Ad Library
+    <div style='background-color: #ffe8e8; border-left: 5px solid #ff6b6b; padding: 20px; border-radius: 5px; margin-bottom: 20px;'>
+        <h4 style='color: #d32f2f; margin-top: 0;'>⚠️ European Commission finds TikTok's ad repository in breach of the Digital Services Act</h4>
+        <p><strong>What's missing from TikTok's repository:</strong></p>
+        <ul>
+            <li>👉🏼 Info about ads content</li>
+            <li>👉🏼 Targeted users</li>
+            <li>👉🏼 Ads investors (who paid for the commercial content)</li>
+            <li>👉🏼 A function that allows the public to search comprehensively for advertisement</li>
+        </ul>
+        <p><em>May 2025: The Commission has found TikTok's ad repository does not meet DSA requirements for transparency and data access.</em></p>
+    </div>
+    """, unsafe_allow_html=True)
     
-    1. Use the search bar to find specific advertisers or ad content topics
-    2. Apply filters for date ranges, countries, and ad types
-    3. Click on individual ads to see details about targeting parameters and reach
-    4. Use the "Download" feature to export data for offline analysis
+    # Add embedded PDF
+    ec_tiktok_pdf = os.path.join("data", "EC-TikTok-breach.pdf")
+    if os.path.exists(ec_tiktok_pdf):
+        st.markdown("### European Commission's Statement on TikTok DSA Breach")
+        st.markdown("Click below to view the full EC determination on TikTok's ad repository non-compliance:")
+        
+        # Create HTML to embed PDF using iframe
+        pdf_display = f'''
+            <iframe src="data:application/pdf;base64,{base64.b64encode(open(ec_tiktok_pdf, "rb").read()).decode('utf-8')}"
+                    width="700" height="500" type="application/pdf"></iframe>
+        '''
+        st.markdown(pdf_display, unsafe_allow_html=True)
     
-    ### Key Research Applications
-    
-    - Monitoring political ad spending during election periods
-    - Analyzing targeting strategies by different political actors
-    - Comparing ad messaging across different demographic targets
-    - Tracking issue-based advocacy campaigns
-    """)
-    
-    st.markdown("""
-    ### Workshop Exercise: Exploring Political Ads
-    
-    For this workshop, try the following exercise:
-    
-    1. Visit the [TikTok Ad Library](https://library.tiktok.com/ads)
-    2. Search for terms like "election," "vote," "democracy," or "politics"
-    3. Filter for ads in your country or region
-    4. Examine the targeting parameters of political advertisements
-    5. Note what information is available and what seems to be missing
-    
-    ### Limitations of Ads Repository Data
-    
-    While valuable, ad repository data has several limitations:
-    
-    - Limited historical data (usually 1-2 years)
-    - Inconsistent reporting formats across platforms
-    - No interaction data (likes, comments, shares)
-    - No information about organic content recommendations
-    - Limited details on actual audience reached vs targeting parameters
-    - No access to ad performance metrics like click-through rates
-    - Limited ability to observe personalization effects
-    """)
 
 # Tab 2: Transparency Database
 with tab2:
@@ -154,16 +159,57 @@ with tab2:
     - Providing complete technical details on platform operations
     
     While the public database gives a high-level overview, researchers can request more detailed non-public data under Article 40(4) of the DSA to hold platforms accountable and verify their compliance claims.
-    
-    ### Workshop Exercise: Exploring Platform Transparency Statements
-    
-    For this workshop, try the following exercise:
-    
-    1. Visit the [DSA Transparency Database](https://transparency.dsa.ec.europa.eu/statement)
-    2. Browse statements from different platforms (TikTok, Facebook, X/Twitter, etc.)
-    3. Compare how different platforms disclose their content moderation practices
-    4. Note what information is consistently provided and what varies between platforms
     """)
+    
+    # Create information boxes for key insights about the Transparency Database
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("""
+        <div style='background-color: #f0f7fb; border-left: 5px solid #2196F3; padding: 20px; border-radius: 5px; margin-bottom: 20px;'>
+            <h4 style='color: #0d47a1; margin-top: 0;'>Academic Analysis: Kaushal et al.</h4>
+            <p>Research reveals that despite transparency gains, compliance remains problematic:</p>
+            <ul>
+                <li>99.8% of removals are based on Terms of Service rather than illegal content (0.2%)</li>
+                <li>Appeals status for content moderation decisions is not reported</li>
+                <li>Lack of standardization makes extracting meaningful insights difficult</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
+        
+    with col2:
+        st.markdown("""
+        <div style='background-color: #fff8e1; border-left: 5px solid #ffc107; padding: 20px; border-radius: 5px; margin-bottom: 20px;'>
+            <h4 style='color: #ff6f00; margin-top: 0;'>Key Findings: Trujillo et al.</h4>
+            <p>Critical shortcomings identified include:</p>
+            <ul>
+                <li>Platforms adhere only partially to the database's intended structure</li>
+                <li>Database structure is inadequate for platforms' reporting needs</li>
+                <li>Substantial differences exist in moderation actions across platforms</li>
+                <li>Significant fraction of data is inconsistent</li>
+                <li>Platform X presents the most inconsistencies</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    # Full-width box for strategic approach
+    st.markdown("""
+    <div style='background-color: #e8f5e9; border-left: 5px solid #4caf50; padding: 20px; border-radius: 5px; margin-bottom: 20px;'>
+        <h4 style='color: #2e7d32; margin-top: 0;'>Strategic Approach: Leveraging Transparency Tools</h4>
+        <p><strong>Demonstration of necessity for data access requests:</strong></p>
+        <p>You can leverage all available transparency tools (ad-targeting databases, content moderation databases) to hold platforms accountable as part of data access requests under Article 40(4).</p>
+        <p><strong>Example Application:</strong> Animal rights researchers could log all entries related to "Animal Welfare" from eBay on the DSA Transparency database and subsequently hold the platform accountable to providing the exact amount of data they reported (e.g., 4,205 posts).</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Add Terms and Conditions Database box
+    st.markdown("""
+    <div style='background-color: #e3f2fd; border-left: 5px solid #1976d2; padding: 20px; border-radius: 5px; margin-bottom: 20px;'>
+        <h4 style='color: #1565c0; margin-top: 0;'>DSA Terms and Conditions Database</h4>
+        <p>The European Commission now hosts a GitLab repository with a database of platform Terms and Conditions.</p>
+        <p><strong><a href="https://code.europa.eu/dsa/terms-and-conditions-database/vlops-and-vloses/vlop-vlose-versions" target="_blank">Access the Terms and Conditions Database</a></strong></p>
+    </div>
+    """, unsafe_allow_html=True)
     
     # Create tabs for different types of transparency information with mock examples
     
@@ -187,11 +233,6 @@ with tab3:
     # Add TikTok Research API link
     st.subheader("TikTok Research API")
     
-    st.markdown("""
-    The TikTok Research API provides structured data access for qualified academic researchers.
-    
-    **[Open TikTok Research API Documentation in a New Tab](https://developers.tiktok.com/products/research-api/)** 👈 Click here to explore the actual API documentation
-    """)
 
     # Add DSA40 Data Access Tracker
     st.subheader("DSA40 Data Access Tracker")
@@ -218,7 +259,17 @@ with tab3:
     5. Agree to the API terms of service
     
     **Recent Changes:** Ethics committee approval is no longer required for the application process.
+    """)
     
+    # Add VLOP-vetting-process image
+    vetting_process_path = os.path.join("data", "VLOP-vetting-process.jpg")
+    if os.path.exists(vetting_process_path):
+        st.image(vetting_process_path, width=800, caption="VLOP vetting process for researcher access under Article 40 DSA (Source: Democracy Reporting International, 2024)")
+        st.markdown("""
+        <small>Source: <a href="https://digitalmonitor.democracy-reporting.org/data-access/#section2-tab1" target="_blank">Digital Monitor by Democracy Reporting International (2024)</a></small>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("""
     ### Access Timeline
     
     From our experience, the access granting process typically takes:
@@ -227,6 +278,8 @@ with tab3:
 
     # Create tabs for data limitations and VDE
     st.markdown("## Data Access Limitations")
+    st.subheader("TikTok Research API")
+    st.markdown("[Comparison of TikTok Research API with other data access methods](https://github.com/mrtn3000/tiktok-audit/tree/main/Data%20Access)")
     api_limitations_tab1, api_limitations_tab2 = st.tabs(["Platform-specific Limitations", "Virtual Data Enclaves (VDE)"])
     
     with api_limitations_tab1:
@@ -251,6 +304,14 @@ with tab3:
         - Restricted data granularity for sensitive topics
         - Significant technical barriers to working with the data
         """)
+        
+        # Add VLOP-provided-data image
+        vlop_data_path = os.path.join("data", "VLOP-provided-data.jpg")
+        if os.path.exists(vlop_data_path):
+            st.image(vlop_data_path, width=800, caption="Types of data provided by VLOPs under Article 40 DSA (Source: Democracy Reporting International, 2024)")
+            st.markdown("""
+            <small>Source: <a href="https://digitalmonitor.democracy-reporting.org/data-access/#section2-tab1" target="_blank">Digital Monitor by Democracy Reporting International (2024)</a></small>
+            """, unsafe_allow_html=True)
     
     with api_limitations_tab2:
         st.subheader("Virtual Data Enclaves (VDE)")

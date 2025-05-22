@@ -40,50 +40,6 @@ from platforms (under GDPR Article 15) and donate this data to research initiati
 - Empowers users to contribute directly to platform accountability
 """)
 
-# Data Donation Projects
-st.subheader("Notable Data Donation Projects")
-
-# Bundeswahl Project
-with st.expander("Dein Feed, Deine Wahl - German Election Project", expanded=True):
-    st.markdown("""
-    ### Dein Feed, Deine Wahl (Your Feed, Your Choice)
-    
-    This project collected donated TikTok data during the German federal election (Bundeswahl) to analyze 
-    how algorithms influenced political content distribution.
-    
-    **[Visit Project Website](https://dein-feed-deine-wahl.de/)**
-    
-    #### Key Features:
-    - Collected feed data from real TikTok users
-    - Analyzed political content exposure across different user groups
-    - Provided insights into algorithmic influence on election information
-    - Created transparency around content recommendation patterns
-    
-    The project demonstrated how individual data access rights can be aggregated for meaningful algorithm research.
-    """)
-    
-    # Display project image if available
-    project_image_path = os.path.join("data", "dein-feed-deine-wahl.png")
-    if os.path.exists(project_image_path):
-        st.image(project_image_path, caption="Dein Feed, Deine Wahl Project", use_container_width=True)
-
-# Data Donation Lab
-with st.expander("Data Donation Lab & Weizenbaum Institute", expanded=True):
-    st.markdown("""
-    ### Data Donation Lab & Weizenbaum Institute
-    
-    The Data Donation Lab at the Weizenbaum Institute has pioneered methods for collecting and analyzing 
-    data donations for algorithm research.
-    
-    #### Key Initiatives:
-    - Development of secure data donation infrastructure
-    - Creation of browser extensions for simplified data donation
-    - Standardized protocols for handling sensitive personal data
-    - Cross-platform comparison studies
-    
-    Their work has established methodological standards for conducting research through data donations while
-    maintaining privacy and research ethics.
-    """)
 
 # How to request your data
 st.header("How to Request Your Data")
@@ -177,46 +133,111 @@ Several initiatives have developed tools to make data donation easier for both u
 * **Anonymization Tools**: Protect donor privacy while preserving research value
 """)
 
-# Example Data Analysis
-st.subheader("Sample Insights from Data Donations")
+# Data Donation Projects
+st.subheader("Notable Data Donation Projects")
 
-st.markdown("""
-### What Can We Learn From Donated Data?
+# Bundeswahl Project
+with st.expander("Dein Feed, Deine Wahl - German Election Project", expanded=True):
+    st.markdown("""
+    ### Dein Feed, Deine Wahl (Your Feed, Your Choice)
+    
+    This project collected donated TikTok data during the German federal election (Bundeswahl) to analyze 
+    how algorithms influenced political content distribution.
+    
+    **[Visit Project Website](https://dein-feed-deine-wahl.de/)**
+    
+    #### Key Features:
+    - Collected feed data from real TikTok users
+    - Analyzed political content exposure across different user groups
+    - Provided insights into algorithmic influence on election information
+    - Created transparency around content recommendation patterns
+    
+    The project demonstrated how individual data access rights can be aggregated for meaningful algorithm research.
+    """)
+    
+    # Display project image if available
+    project_image_path = os.path.join("data", "dein-feed-deine-wahl.png")
+    if os.path.exists(project_image_path):
+        st.image(project_image_path, caption="Dein Feed, Deine Wahl Project", use_container_width=True)
 
-Analysis of donated data has revealed important insights about algorithmic systems:
+# Data Donation Lab
+with st.expander("Data Donation Lab & Weizenbaum Institute", expanded=True):
+    st.markdown("""
+    ### Data Donation Lab & Weizenbaum Institute
+    
+    The Data Donation Lab at the Weizenbaum Institute has pioneered methods for collecting and analyzing 
+    data donations for algorithm research.
+    
+    #### Key Initiatives:
+    - Development of secure data donation infrastructure
+    - Creation of browser extensions for simplified data donation
+    - Standardized protocols for handling sensitive personal data
+    - Cross-platform comparison studies
+    
+    Their work has established methodological standards for conducting research through data donations while
+    maintaining privacy and research ethics.
+    """)
 
-1. **Content Exposure Patterns**:
-   - Which topics appear most frequently in different user feeds
-   - How user behavior influences content recommendations
-   - Differences in political content exposure across user groups
-
-2. **Platform Behavior Variations**:
-   - How the same user profile is treated differently across platforms
-   - Temporal changes in recommendation algorithms
-   - A/B testing detected through aggregate donation analysis
-""")
 
 # Data donation challenges section
 st.header("Challenges with the Data Donation Approach")
 
+st.markdown("""
+While data donation provides valuable insights, it comes with several significant challenges:
+""")
+
+# Create two columns - one for the embed and one for the explanation
+col1, col2 = st.columns([3, 5])
+
+# LinkedIn post embed in the first column
+with col1:
+    st.components.v1.html("""
+    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7300850251601469440" 
+            height="700" width="100%" frameborder="0" allowfullscreen="" 
+            title="Embedded LinkedIn post about data donation challenges"></iframe>
+    """, height=700)
+
+# Explanation of challenges in the second column
+with col2:
+    st.markdown("""
+    ### The Reality of Data Donation Challenges
+    
+    As illustrated in the post about TikTok:
+    
+    1. **Unpredictable Format Changes**: 
+       - Platforms change data formats without notice (e.g., TikTok changing "Activities" to "Your Activities")
+       - File names suddenly change (e.g., "Browsing History.txt" to "Watch History.txt")
+       - These changes break research tools and invalidate donations
+    
+    2. **No Communication Channel**:
+       - Platforms don't announce changes in advance
+    
+    3. **Privacy and Anonymization Challenges**:
+       - Data contains highly sensitive personal information (private messages, locations)
+       - Anonymization must happen client-side before researchers can access it
+       - Cannot store raw data on research servers due to privacy regulations
+    
+    4. **Forced Client-Side Filtering**:
+       - Processing must happen on user devices before data is donated
+       - Any platform format change breaks these filtering tools
+       - Requires constant maintenance of data processing scripts
+    
+    5. **Research Impact**:
+       - As seen in the post, 80 donations were rendered useless by a simple format change
+       - For data donation studies with limited samples, this is devastating
+       - Undermines the reliability of the entire research approach
+    
+    These issues highlight why standardization of data formats and proper communication channels with platforms are urgently needed for data donation to become a reliable research method.
+    """)
+
 # Get previous data donation challenges response
 prev_donation_challenges = get_response_for_poll("donation_challenges")
 
-st.markdown("""
-Despite its advantages, data donation comes with significant challenges:
 
-* **Selection Bias**: Donors may not represent average platform users
-* **Incomplete Data**: Platforms may not provide all relevant data
-* **Format Complexity**: Donated data often requires significant processing
-* **Privacy Concerns**: Balancing research needs with donor privacy
-* **Scale Limitations**: Difficult to achieve sample sizes comparable to API access
-
-**Group Discussion Question**: How might data donation approaches complement official DSA data access methods?
-""")
 
 # Display text area with previous response
 donation_challenges = st.text_area(
-    "Your thoughts on combining data donation with DSA tools:", 
+    "Your thoughts on adding specific technical details in Regualtions:", 
     value=prev_donation_challenges if prev_donation_challenges else "",
     height=150,
     key="donation_challenges"
