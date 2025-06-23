@@ -237,7 +237,7 @@ prev_donation_challenges = get_response_for_poll("donation_challenges")
 
 # Display text area with previous response
 donation_challenges = st.text_area(
-    "Your thoughts on adding specific technical details in Regualtions:", 
+    "Your thoughts on adding specific technical details in Regulations:", 
     value=prev_donation_challenges if prev_donation_challenges else "",
     height=150,
     key="donation_challenges"

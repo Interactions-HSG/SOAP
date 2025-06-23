@@ -1,279 +1,230 @@
 import streamlit as st
-import pandas as pd
-from PIL import Image
 import os
-from database.poll_responses.session_management import initialize_session, save_poll_response, get_response_for_poll
+from PIL import Image
+import base64
 
-# Initialize user session
-user_id = initialize_session()
-
+# Page configuration
 st.set_page_config(
-    page_title="Introduction | Social Media Auditing Workshop",
-    page_icon="🔍",
+    page_title="Introduction - SOAP Workshop",
+    page_icon="📖",
     layout="wide"
 )
 
-st.title("1. Introduction to Social Media Research")
-st.subheader("Understanding the Digital Services Act & Researcher Access")
+st.title("Measuring Systemic Risks: SOAP")
+st.subheader("The System for Observing and Analyzing Posts")
 
-# Load images
-image_path = os.path.join("data", "cpdp2025-long.svg")
-if os.path.exists(image_path):
-    st.image(image_path, width=600)
+# Add navigation helper
+st.info("📚 This workshop demonstrates SOAP, a techno-legal tool for investigating systemic risks on VLOPs.")
 
-# Short introduction
+# Introduction
 st.markdown("""
-Welcome to our workshop on **Social Media Research Under the Digital Services Act (DSA)**. 
-This session explores how researchers can investigate algorithmic systems while navigating
-legal and technical constraints.
+The current landscape of data access for investigating systemic risks on Very Large Online Platforms (VLOPs) is fraught with challenges. Official data access mechanisms under the DSA sometimes are not sufficient, providing static and limited data that hinders comprehensive investigations. Alternative methodologies, such as data scraping and black-box testing, offer potential solutions but are constrained by significant legal and technical barriers.
+
+To address these challenges, we developed the **System for Observing and Analyzing Posts (SOAP)** - a novel tool designed to collect and analyze data from VLOPs. SOAP is specifically aimed at studying systemic risks at scale through sock-puppet auditing. While measuring systemic risks fulfills an important societal need, it must be done in adherence to legal and ethical standards. We present SOAP as a **techno-legal tool for investigating systemic risks**.
 """)
 
-# Poll about familiarity with DSA
-st.header("Before we begin...")
-
-# --- New: Two-column layout for participant info ---
-left_col, right_col = st.columns([1, 1])
-
-# --- LEFT COLUMN: Background & Years of Experience ---
-with left_col:
-    # Background
-    background_options = [
-        "CS", "Legal & Law", "Political Science", "Social Science", "Other"
-    ]
-    prev_background = get_response_for_poll("background")
-    background = st.selectbox(
-        "What is your background?",
-        options=background_options,
-        index=background_options.index(prev_background) if prev_background in background_options else 0
-    )
-    # If 'Other', show text input
-    background_other = ""
-    if background == "Other":
-        background_other = st.text_input(
-            "Please specify your background:",
-            value=prev_background if prev_background not in background_options and prev_background else ""
-        )
-        background_value = background_other if background_other else "Other"
-    else:
-        background_value = background
-    # Save response
-    if prev_background != background_value and background_value:
-        save_poll_response("background", "introduction", background_value)
-
-    # Years of experience
-    exp_options = ["0-3", "3-5", "5-10", "10+"]
-    prev_years_exp = get_response_for_poll("years_experience")
-    years_exp = st.selectbox(
-        "Years of experience in research or relevant field:",
-        options=exp_options,
-        index=exp_options.index(prev_years_exp) if prev_years_exp in exp_options else 0
-    )
-    if prev_years_exp != years_exp:
-        save_poll_response("years_experience", "introduction", years_exp)
-
-# --- RIGHT COLUMN: DSA familiarity & research experience ---
-with right_col:
-    # Get previous DSA familiarity response
-    prev_dsa_familiarity = get_response_for_poll("dsa_familiarity")
-    dsa_options = [
-        "Never heard of it", 
-        "Heard of it but don't know details", 
-        "Familiar with basic provisions",
-        "Very familiar with researcher-specific provisions", 
-        "Expert who has applied for/used DSA data access"
-    ]
-    dsa_familiarity = st.radio(
-        "How familiar are you with data access in the Digital Services Act?", 
-        options=dsa_options,
-        index=dsa_options.index(prev_dsa_familiarity) if prev_dsa_familiarity and prev_dsa_familiarity in dsa_options else 0
-    )
-    if dsa_familiarity != prev_dsa_familiarity:
-        save_poll_response("dsa_familiarity", "introduction", dsa_familiarity)
-
-    # Get previous social media research response
-    prev_research_exp = get_response_for_poll("research_experience")
-    research_options = [
-        "No experience", 
-        "Limited experience (e.g., social media analytics)", 
-        "Some experience with platform APIs",
-        "Significant experience with social media research", 
-        "Expert in algorithmic auditing"
-    ]
-    research_exp = st.radio(
-        "What is your experience level with social media research?",
-        options=research_options,
-        index=research_options.index(prev_research_exp) if prev_research_exp and prev_research_exp in research_options else 0
-    )
-    if research_exp != prev_research_exp:
-        save_poll_response("research_experience", "introduction", research_exp)
-
-
-
-# Add the real-world case study
-st.header("Real-World Case Study: Election Interference in Romania")
+# Understanding Personalized Recommendation Systems
+st.header("The Challenge: Personalized Content & Filter Bubbles")
 
 st.markdown("""
-### TikTok Manipulation in Romanian Presidential Elections
-<small>*Source: Goanta, Catalina, et al. "The Great Data Standoff: Researchers vs. Platforms Under the Digital Services Act." arXiv preprint arXiv:2505.01122 (2025). [View Paper](https://arxiv.org/abs/2505.01122)*</small>
-
-
-The Romanian presidential election campaign (October 25 - November 24, 2024) revealed concerning patterns of platform 
-manipulation. According to investigative journalists and Romanian intelligence agencies, TikTok became a central tool 
-for influencing voters through coordinated tactics that promoted a previously unknown right-wing candidate.
-
-In a matter of weeks, this candidate rose from obscurity to become the most popular candidate in the first voting 
-round. Due to suspected manipulation and possible foreign interference, Romania's Constitutional Court ultimately 
-annulled the election results, and the European Court of Human Rights refused the candidate's request to suspend this decision.
-
-""", unsafe_allow_html=True)
-
-# --- Key Mechanisms of Manipulation ---
-st.subheader("Key Mechanisms of Manipulation")
-
-mechanisms = [
-    ("Inauthentic Behavior", "A coordinated network of promotion accounts generated fake engagement that triggered TikTok's search recommendations"),
-    ("Political Influencer Marketing", "Non-disclosed micro-influencer campaigns promoted an \"ideal candidate\" without transparent disclosure"),
-    ("Livestream Monetization", "TikTok's streaming gifts and coins were used to amplify undisclosed political advertising and content"),
-]
-cols = st.columns(3)
-for i, (title, desc) in enumerate(mechanisms):
-    with cols[i % 3]:
-        st.markdown(f"""
-        <div style='background-color: #f0f2f6; padding: 15px; border-radius: 10px; margin-bottom: 15px;'>
-            <h4 style='color: #1e3a8a;'>{title}</h4>
-            <p>{desc}</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-# --- Systemic Risks Under DSA ---
-st.subheader("Systemic Risks Under DSA")
-
-risks = [
-    ("Election Interference", "Coordinated manipulation of platform mechanisms to influence electoral outcomes (Art. 34(1)(c))"),
-    ("Hidden Advertising", "Undisclosed political advertising masquerading as organic content (Art. 34(1)(a))"),
-    ("Hate Speech", "Amplification of content involving fascism, misogyny, racism, and fundamental rights rejections (Art. 34(1)(b))"),
-    ("Conspiracy Theories", "Promotion of conspiracy theories with potential public health impacts (Art. 34(1)(d))"),
-    ("Recommender System Design", "TikTok's search recommendations further amplified problematic content (Art. 34(2))"),
-]
-cols = st.columns(3)
-for i, (title, desc) in enumerate(risks):
-    with cols[i % 3]:
-        st.markdown(f"""
-        <div style='background-color: #fef3c7; padding: 15px; border-radius: 10px; margin-bottom: 15px;'>
-            <h4 style='color: #92400e;'>{title}</h4>
-            <p>{desc}</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-
-# Workshop overview
-st.header("Data Access Overview")
-
-# Add the complete data access graphic
-dsa_tools_path = os.path.join("data", "DSATools_0.4(1).png")
-if os.path.exists(dsa_tools_path):
-    st.image(dsa_tools_path, width=1000, caption="Complete Data Access Overview")
-
-st.markdown("""
-In order to investigate those claims, we will use all available data access methodologies.
+### Highly Personalized Content Delivery
+Feeds and content reaching users are highly personalized through sophisticated recommendation algorithms:
 """)
 
-# Data access experience dropdown
-st.subheader("Your Experience with Data Access")
+# Display recommendation system pipeline
+try:
+    recsys_image = Image.open("data/recsys-pipeline.png")
+    st.image(recsys_image, caption="Recommendation System Pipeline: How platforms personalize content delivery", use_container_width=True)
+except FileNotFoundError:
+    st.info("Recommendation system diagram not found at data/recsys-pipeline.png")
 
-# Define data access options based on the graphic
-data_access_options = [
-    "I haven't used any data access methods yet",
-    "Research APIs",
-    "Transparency Reports",
-    "Transparency Database",
-    "Ad Transparency Database",
-    "RecSys Transparency Reports", 
-    "Data Donation Packages",
-    "Platform Logs & Network Traffic Analysis",
-    "Business API Access",
-    "Scraping",
-    "Manual Data Extraction"
-]
+st.markdown("""
+### Filter Bubbles and Loss of Shared Worlds
+Users can live in so-called filter bubbles, leading to a loss of shared worlds:
+""")
 
-# Get previous response
-prev_data_access = get_response_for_poll("data_access_experience")
-if not isinstance(prev_data_access, list):
-    prev_data_access = [prev_data_access] if prev_data_access else []
+# Display filter bubble concept
+try:
+    bubble_image = Image.open("data/Simpson_bubble.webp")
+    st.image(bubble_image, caption="Filter Bubbles: How personalized content creates isolated information environments", use_container_width=True)
+except FileNotFoundError:
+    st.info("Filter bubble illustration not found at data/Simpson_bubble.webp")
 
-# Create two rows of checkboxes
-st.write("Which data access methods have you used before? (Select all that apply)")
+st.markdown("""
+These personalized recommendation systems create unique "information diets" for each user, potentially leading to:
+- **Echo chambers** where users only see content that confirms their existing beliefs
+- **Political polarization** through algorithmic amplification of divisive content
+- **Reduced exposure to diverse perspectives** and shared societal discourse
+- **Systemic risks** to democratic processes and public discourse
 
-# Calculate how to split the options into two roughly equal rows
-mid_point = len(data_access_options) // 2
-first_row_options = data_access_options[:mid_point]
-second_row_options = data_access_options[mid_point:]
+Understanding and measuring these effects requires sophisticated auditing tools like SOAP.
+""")
 
-# Create two columns for the checkbox rows
+# SOAP Overview Section
+st.header("SOAP Overview")
+
+st.markdown("""
+SOAP is a framework for auditing personalized recommender systems on VLOPs. It leverages configurable sock-puppet accounts to simulate user behavior, measure content exposure, and evaluate how recommendation systems contribute to systemic risks—such as filter bubbles, political radicalization, or harmful content amplification.
+
+SOAP is based on two key innovations:
+
+**1. Active Puppets**: These extend traditional sock-puppet methods by dynamically adapting their behavior during runtime. Puppets are guided by a "primer prompt," which defines their topical interest (e.g., climate change denial or election misinformation) and steers their actions accordingly.
+
+**2. Multimodal LLM Integration**: SOAP integrates large language models to analyze diverse content across text, image, and audio modalities. This automates the deductive coding process while maintaining human oversight of classification quality.
+
+Unlike systems that merely collect content snapshots, SOAP tracks the evolution of personalized feeds over time. This enables causal experimentation and longitudinal analysis of algorithmic behavior.
+""")
+
+# Real-world examples section
+st.header("Real-World SOAP Applications")
+
+st.markdown("""
+SOAP has been successfully deployed to investigate systemic risks across multiple platforms and contexts:
+""")
+
+# Use case columns
 col1, col2 = st.columns(2)
 
-# Dictionary to track checkbox states
-selected_methods = {}
-
-# First row of checkboxes
 with col1:
-    for option in first_row_options:
-        selected_methods[option] = st.checkbox(
-            option, 
-            value=option in prev_data_access,
-            key=f"checkbox_{option.replace(' ', '_')}"
-        )
+    st.subheader("🗳️ German Election Study")
+    
+    
+    st.markdown("""
+    **The TikTok Party**: Investigation of political content exposure during Germany's 2024 elections.
+    
+    **Key Findings**:
+    - Platform algorithms systematically amplified certain political perspectives
+    - Created distinct "information diets" for different user groups
+    
+    [📄 Read the full investigation](https://www.zeit.de/digital/2025-02/rechts-tiktok-bundestagswahl-soziale-medien-afd)
+    """)
 
-# Second row of checkboxes
 with col2:
-    for option in second_row_options:
-        selected_methods[option] = st.checkbox(
-            option, 
-            value=option in prev_data_access,
-            key=f"checkbox_{option.replace(' ', '_')}_row2"
-        )
+    st.subheader("🐦 Elon Musk's Feed Analysis")
+    
+    st.markdown("""
+    **Algorithmic Influence on High-Profile Users**: Analysis of how recommendation algorithms shape content exposure for influential figures.
+    
+    **Key Findings**:
+    - Even prominent users are subject to algorithmic filtering
+    - Platform recommendations can amplify specific viewpoints
+    - Personal feeds become increasingly homogeneous over time
+    
+    [📄 Read the full analysis](https://www.nytimes.com/interactive/2025/05/15/business/elon-musk-x-twitter-feed-following-followers.html)
+    """)
 
-# Convert selected checkboxes to list
-selected_data_access = [option for option, selected in selected_methods.items() if selected]
+# How SOAP Works Section
+st.header("How SOAP Works")
 
-# If "I haven't used any data access methods yet" is selected along with other options, unselect it
-if "I haven't used any data access methods yet" in selected_data_access and len(selected_data_access) > 1:
-    selected_data_access.remove("I haven't used any data access methods yet")
+st.markdown("""
+The SOAP workflow demonstrates how algorithmic recommendations evolve over time, creating increasingly homogeneous content feeds.
 
-# Save response when it changes
-if selected_data_access != prev_data_access:
-    save_poll_response("data_access_experience", "introduction", selected_data_access)
+### 1. System Interaction Timeline
+""")
 
+# Display timeline image
+try:
+    timeline_image = Image.open("data/timeline_aviation_bubble.png")
+    st.image(timeline_image, caption="SOAP system starts interacting with posts and tracking algorithmic responses", use_container_width=True)
+except FileNotFoundError:
+    st.info("Timeline visualization not found at data/timeline_aviation_bubble.png")
 
-# Show institutions
-st.header("Presented by")
+st.markdown("""
+### 2. Filter Bubble Formation
+""")
 
-col1, col2, col3, col4 = st.columns(4)
+# Display filter bubble formation image
+try:
+    aviation_image = Image.open("data/Aviation_Filter_bubble.png")
+    st.image(aviation_image, caption="Timeline of sockpuppet entering an aviation-focused filter bubble", use_container_width=True)
+except FileNotFoundError:
+    st.info("Aviation filter bubble visualization not found at data/Aviation_Filter_bubble.png")
 
-# Maastricht University logo
-maastricht_path = os.path.join("data", "Maastricht_University_logo.svg.png")
-if os.path.exists(maastricht_path):
-    with col1:
-        st.image(maastricht_path, width=200)
-        st.caption("Maastricht University")
+st.markdown("""
+### 3. Multi-Topic Capability
+""")
 
-# HSG logo
-hsg_path = os.path.join("data", "HSG_Logo_EN_RGB.svg.png")
-if os.path.exists(hsg_path):
-    with col2:
-        st.image(hsg_path, width=200)
-        st.caption("University of St. Gallen")
+# Display multiple filter bubbles image
+try:
+    bubbles_image = Image.open("data/Filter_bubbles_compressed.png")
+    st.image(bubbles_image, caption="SOAP can investigate filter bubble formation across diverse topics", use_container_width=True)
+except FileNotFoundError:
+    st.info("Filter bubbles overview not found at data/Filter_bubbles_compressed.png")
 
-# Lausanne logo
-unil_path = os.path.join("data", "Logo_Université_de_Lausanne.png")
-if os.path.exists(unil_path):
-    with col3:
-        st.image(unil_path, width=200)
-        st.caption("University of Lausanne")
+# SOAP Technical Features
+st.header("SOAP Technical Features")
 
+col1, col2 = st.columns(2)
+
+with col1:
+    st.subheader("🤖 Automated Sock-puppet Management")
+    st.markdown("""
+    - **Profile Creation**: Diverse demographic and behavioral profiles
+    - **Behavioral Simulation**: Authentic user interaction patterns
+    - **Primer Prompts**: Topic-specific guidance for puppet behavior
+    - **Scalable Deployment**: Multiple puppets operating simultaneously
+    """)
+    
+    st.subheader("🔍 Multimodal Content Analysis")
+    st.markdown("""
+    - **Text Analysis**: Natural language processing and sentiment analysis
+    - **Image Recognition**: Visual content classification and OCR
+    - **Video Processing**: Scene understanding and object detection
+    - **Audio Analysis**: Speech-to-text and emotional tone detection
+    """)
+
+with col2:
+    st.subheader("📊 Data Collection & Storage")
+    st.markdown("""
+    - **Feed Logging**: Complete timeline of recommended content
+    - **Interaction Tracking**: User actions and platform responses
+    - **Metadata Capture**: Timestamps, engagement metrics, algorithmic signals
+    - **Privacy Protection**: Anonymized data handling
+    """)
+    
+    st.subheader("📈 Analysis & Validation")
+    st.markdown("""
+    - **Filter Bubble Detection**: Statistical measures of content homogeneity
+    - **Reliability Testing**: Inter-rater and intra-rater validation
+    - **Temporal Analysis**: Long-term trend identification
+    - **Bias Quantification**: Systematic differences across user groups
+    """)
+
+# Workshop Transition
+st.header("🎯 Workshop Structure")
+
+st.markdown("""
+This workshop provides hands-on experience with SOAP's core capabilities:
+
+1. **Data Scraping** → Learn systematic data collection from platforms
+2. **Deductive Coding** → Develop frameworks for content analysis using LLMs
+3. **Analysis** → Apply statistical methods to detect systemic risks
+
+By the end, you'll understand how to deploy SOAP for independent platform auditing and systemic risk assessment.
+""")
+
+st.header("Open this website under: facct-tutorial.streamlit.app")
+st.header("Find and clone the Git repo under: https://github.com/Interactions-HSG/SOAP")
 
 # Navigation
 st.markdown("---")
-next_button = st.button("Next: DSA Tools →")
-if next_button:
-    st.switch_page("pages/2_Dsa_Tools.py")
+col1, col2, col3 = st.columns([1, 1, 1])
+
+with col1:
+    st.markdown("")
+
+with col2:
+    st.markdown("<div style='text-align: center;'>**Current: Introduction**</div>", unsafe_allow_html=True)
+
+with col3:
+    if st.button("Next: Data Scraping →"):
+        st.switch_page("pages/2_Data_Scraping.py")
+
+# Footer
+st.markdown("---")
+st.markdown("""
+<div style='text-align: center; color: gray; font-size: 0.8em;'>
+Part of the FAccT 2025 Workshop: "Auditing Social Media Platforms using SOAP"<br>
+University of St. Gallen | CoCoDa Project
+</div>
+""", unsafe_allow_html=True)
