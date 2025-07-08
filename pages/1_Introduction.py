@@ -203,8 +203,7 @@ This workshop provides hands-on experience with SOAP's core capabilities:
 By the end, you'll understand how to deploy SOAP for independent platform auditing and systemic risk assessment.
 """)
 
-st.header("Open this website under: facct-tutorial.streamlit.app")
-st.header("Find and clone the Git repo under: https://github.com/Interactions-HSG/SOAP")
+
 
 # Navigation
 st.markdown("---")
