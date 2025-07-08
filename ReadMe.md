@@ -1,8 +1,18 @@
 # SOAP - System for Analyzing and Observing Posts
 
+SOAP is a techno-legal framework for auditing systemic risks in Very Large Online Platforms (VLOPs) through sock-puppet auditing, designed to operate within the Digital Services Act (DSA) regulatory framework. The system enables researchers, regulators, and civil society actors to investigate how personalized recommender systems contribute to filter bubbles, political radicalization, and harmful content amplification.
+
 This repository contains the source code for the SOAP system, as described in this paper:  
 [*From Walls to Windows: Creating Transparency to Understand Filter Bubbles in Social Media*](https://www.alexandria.unisg.ch/entities/publication/f41060db-3d3b-4071-ad92-8ac6bb1cc734/details)  
 Proceedings of the Second Workshop on the Normative Design and Evaluation of Recommender Systems (NORMalize 2024), co-located with the 18th ACM Conference on Recommender Systems (RecSys 2024), Bari, Italy, October 18, 2024.
+
+## Key Features
+
+- **DSA-Compliant Data Collection**: Scrapes only publicly available data accessible without user credentials, ensuring compliance with privacy expectations and regulatory frameworks
+- **Active Sock-Puppet Auditing**: Employs configurable sock-puppet accounts that dynamically adapt behavior based on "primer prompts" to simulate diverse user personas and test recommendation system responses
+- **Multimodal Content Analysis**: Integrates large language models for automated deductive coding across text, image, and audio content, reducing manual annotation burden while maintaining oversight
+- **Longitudinal Filter Bubble Tracking**: Monitors the evolution of personalized feeds over time to enable causal experimentation and measure convergence toward content homogeneity
+- **Scalable Systemic Risk Investigation**: Provides structured, repeatable audits of platform behavior under controlled conditions for empirical evidence of recommendation engine patterns
 
 ## Disclaimer
 
@@ -14,18 +24,22 @@ SOAP is currently under development, with new features and improvements being ad
 
 ## Set-Up
 
-SOAP currently runs on Google Cloud Vertex AI, utilizing the multimodal model Gemini 1.5 flash. To run the code as-is, a Google Cloud account is required. The deductive coding component can also be replaced with another model (either self-hosted or on another platform). The following are needed to run the code as-is:
+SOAP operates within the DSA regulatory framework by accessing only publicly available data from platform Explore pages. The system currently runs on Google Cloud Vertex AI, utilizing the multimodal model Gemini 1.5 flash for automated content analysis. To run the code as-is, a Google Cloud account is required. The deductive coding component can be replaced with other models (either self-hosted or on another platform) to suit different research needs.
 
-- Instagram account credentials (username and password). It is recommended to use bot/fake accounts as there is a risk of accounts being flagged for automated behavior, potentially resulting in restrictions or bans.
-- Google Cloud:
+The following are needed to run the code as-is:
+
+- **Sock-puppet account credentials** (username and password). It is recommended to use dedicated research accounts as there is a risk of accounts being flagged for automated behavior, potentially resulting in restrictions or bans.
+- **Google Cloud:**
   - `GOOGLE_APPLICATION_CREDENTIALS`
   - `BUCKET_NAME`
   - `PROJECT_NAME`
   - API credits for both storage (bucket) and LLM usage
 
+**Legal and Ethical Considerations**: SOAP is designed with legal compliance in mind, accessing only publicly available data and employing passive interaction patterns (viewing, liking) without active discourse (commenting, sharing, messaging). The system includes safeguards against harmful prompting and is intended solely for public interest research purposes.
+
 ## Running the System
 
-The system is orchestrated and managed by the `orchestrator.py` script, which coordinates all the necessary components, as shown in "Figure 1: Agent Scenario for Creating Filter Bubbles based on Primer Prompts."
+The system is orchestrated and managed by the `orchestrator.py` script, which coordinates all components for sock-puppet auditing as shown in "Figure 1: Agent Scenario for Creating Filter Bubbles based on Primer Prompts." The framework employs active sock-puppets that dynamically adapt their behavior based on primer prompts to test how recommendation algorithms respond to different user interest profiles.
 
 ![SOAP system diagram](data/SOAP_system.png)
 
@@ -33,10 +47,18 @@ The following table outlines the key classes and their respective functions:
 
 | **Class**               | **Function**                                             |
 |-------------------------|----------------------------------------------------------|
-| `explorefeed_scraper.py` | Scrapes Explore feed data from Instagram                 |
+| `explorefeed_scraper.py` | Scrapes Explore feed data from Instagram using DSA-compliant methods |
 | `saveFeedCloud.py`       | Saves scraped feed data to Google Cloud Storage          |
-| `VertexAi.py`            | Utilizes Google Cloud Vertex AI for multimodal analysis  |
-| `steering_wheel.py`      | Interacts with Instagram by liking, reporting, or archiving flagged posts |
+| `VertexAi.py`            | Utilizes Google Cloud Vertex AI for multimodal content analysis and automated deductive coding |
+| `steering_wheel.py`      | Controls sock-puppet interactions (liking, reporting, archiving) to simulate user behavior patterns |
+
+## Systemic Risk Applications
+
+SOAP enables investigation of various systemic risks including:
+- **Filter Bubble Formation**: Tracking how quickly platforms converge toward content homogeneity
+- **Content Amplification Patterns**: Measuring exposure to potentially harmful or misleading content
+- **Algorithmic Bias Detection**: Testing recommendation system responses across different user personas
+- **Regulatory Compliance**: Supporting DSA oversight by providing empirical evidence of platform behavior
 
 ## Reliability Testing
 
