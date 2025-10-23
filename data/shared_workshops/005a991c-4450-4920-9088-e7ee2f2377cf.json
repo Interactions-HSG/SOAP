@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-10-22T17:22:33.829436",
+  "sharing_option": "🎥 Nur das Video",
+  "selected_video": "Hund Video",
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "ich mag das nicht"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Das verstehe ich gut, dass du das Video nicht magst. Das ist völlig in Ordnung, wenn dir etwas nicht gefällt oder dich stört.  Kannst du mir vielleicht erzählen, was genau dich an diesem Video gestört hat? War es etwas, das der Hund gesagt hat, oder etwas anderes? Ich bin hier, um zuzuhören."
+    },
+    {
+      "role": "user",
+      "content": "der hund hat blöde sachen gesagt"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Ja, das ist wirklich doof, wenn der Hund im Video blöde Sachen sagt! Das verstehe ich gut, dass dich das stört. Das ist gar nicht okay. Magst du mir erzählen, was genau er gesagt hat? Oder welche Sätze dich am meisten geärgert haben? Ich bin gespannt, was dich daran so gestört hat."
+    },
+    {
+      "role": "user",
+      "content": "man darf das nicht sagen!!!"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Ja, genau! Du hast vollkommen recht, dass man manche Sachen einfach nicht sagen darf. Es ist super, dass du das erkennst!  Kannst du mir vielleicht noch genauer erzählen, welche dieser \"blöden Sachen\", die der Hund gesagt hat, deiner Meinung nach gar nicht gehen und warum? Das hilft mir, es noch besser zu verstehen, was dich so daran stört."
+    }
+  ],
+  "username": "clara clever"
+}

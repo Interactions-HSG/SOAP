@@ -6,11 +6,20 @@ import base64
 
 # Page configuration
 st.set_page_config(
-    page_title="Social Media Research Workshop",
-    page_icon="🔍",
+    page_title="Flag&Safe Workshop",
+    page_icon="🚩",
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# Display logos at the top
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.image("data/Logo_Université_de_Lausanne.png", width=250)
+with col2:
+    st.image("data/HSG_Logo_EN_RGB.svg.png", width=250)
+with col3:
+    st.image("data/Halden-logo.jpg", width=250)
 
 # Function to load and style images
 def load_styled_image(image_path, size=150, border_radius="50%", vertical_shift_px=0): # Added vertical_shift_px
@@ -56,128 +65,42 @@ def load_styled_image(image_path, size=150, border_radius="50%", vertical_shift_
             return f"Error loading image {image_path}: {e}"
     return ""
 
-st.markdown("""
-<div style="display: flex; justify-content: left; align-items: left; margin: 30px 0; gap: 50px;">
-    <div style="text-align: center;">
-        <img src="data:image/png;base64,{}" style="height: 100px;" alt="FAccT 2025">
-    </div>
-    <div style="text-align: center;">
-        <img src="data:image/png;base64,{}" style="height: 100px;" alt="University of St. Gallen">
-    </div>
-</div>
-""".format(
-    base64.b64encode(open("data/FAccT.png", "rb").read()).decode() if os.path.exists("data/FAccT.png") else "",
-    base64.b64encode(open("data/HSG_Logo_EN_RGB.svg.png", "rb").read()).decode() if os.path.exists("data/HSG_Logo_EN_RGB.svg.png") else ""
-), unsafe_allow_html=True)
+# Remove logos section as it's not relevant for the new workshop
 
 # Main title and introduction
-st.title("Auditing Social Media Platforms using SOAP")
-# Add logos section
+st.title("Flag&Safe Workshop an der Pimarschule Halden")
 
-st.subheader("A hands-on tutorial on platform auditing through sockpuppet modeling")
-
-
+st.subheader("Ein Workshop zu sicheren Online-Praktiken")
 
 # Description
 st.markdown("""
-## Workshop Overview
+## Workshop-Überblick
 
-Despite their growing influence, social media platforms still operate largely as black boxes. This hands-on tutorial introduces participants to **SOAP - the System for Observing and Analyzing Posts** - a flexible, open-source framework designed to audit platform behavior through sockpuppet modeling. 
+Dieser Workshop konzentriert sich auf die Förderung sicheren Online-Verhaltens durch zwei Schlüsselaktivitäten: das Melden unangemessener Inhalte an Flaggy und das verantwortungsvolle Teilen von Inhalten mit Lehrern.
 
-SOAP has already been used in journalistic investigations, academic research, and public outreach. In the context of growing regulatory frameworks like the EU Digital Services Act (DSA), SOAP enables critical audits of personalization algorithms, filter bubbles, and systemic risks on platforms like Instagram and TikTok. 
+Die Teilnehmer lernen, schädliche Inhalte zu identifizieren und zu melden, sowie die Bedeutung des sicheren Teilens im Internet zu verstehen.
 
-Participants will explore real-world audit scenarios, learn how to run their own platform investigations, and reflect on ethical and legal implications. From crafting research questions to building simulated user journeys, this tutorial empowers researchers, practitioners, and policymakers to conduct meaningful audits—even when direct platform data is limited. 
-
-Whether you're new to social media auditing or looking to scale your research, SOAP provides the tools and guidance to get started.
+Für weitere Informationen besuche [www.flag-safe.ch](https://www.flag-safe.ch).
 """)
 
-# Presenters section - moved up and styled artistically
-st.markdown("""
-<div style="padding: 20px 0; text-align: center;">
-    <div style="height: 2px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(0,0,120,0.75), rgba(255,255,255,0)); margin: 20px 0;"></div>
-    <h2 style="text-align: center; font-family: 'Georgia', serif;">Workshop Presenters</h2>
-    <div style="height: 2px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(120,0,0,0.75), rgba(255,255,255,0)); margin: 20px 0;"></div>
-</div>
-""", unsafe_allow_html=True)
+# Remove presenters section
 
-# Display presenters with photos in 1 row of 2 columns
-col1, col2 = st.columns(2)
-
-image_display_size = 150 # Define a common size for styled images
-
-with col1:
-    with st.container():
-        st.subheader("Presenter")
-        col_img, col_info = st.columns([1, 2])
-        with col_img:
-            styled_image_html = load_styled_image("data/Luka.jpg", size=image_display_size)
-            if styled_image_html:
-                st.markdown(styled_image_html, unsafe_allow_html=True)
-        with col_info:
-            st.markdown("**Luka Bekavac**")
-            st.markdown("University of St. Gallen (Switzerland)")
-            st.markdown("Luka Bekavac is a doctoral candidate at the University of St. Gallen. His research focuses on understanding and addressing the systemic risks posed by Very Large Online Platforms, combining methods from computer science, tech law and social sciences to study how platforms personalized recommender systems influence us, while developing tools to enhance transparency and accountability in their operation.")
-            st.markdown("[LinkedIn](https://www.linkedin.com/in/luka-bekavac-80285a1b2/)")
-
-with col2:
-    with st.container():
-        st.subheader("Presenter")
-        col_img, col_info = st.columns([1, 2])
-        with col_img:
-            # Apply vertical_shift_px to Simon Mayer's image
-            styled_image_html = load_styled_image("data/Simon.png", size=image_display_size, vertical_shift_px=-20)
-            if styled_image_html:
-                st.markdown(styled_image_html, unsafe_allow_html=True)
-        with col_info:
-            st.markdown("**Prof. Dr. Simon Mayer**")
-            st.markdown("University of St. Gallen (Switzerland)")
-            st.markdown("Simon Mayer is a Full Professor in Computer Science at the University of St. Gallen (HSG). He is fascinated by the integration of concepts and approaches from across the fields of pervasive computing, hypermedia, human-computer interaction, and embedded systems to realize ideal interfaces between machines and animals.")
-            st.markdown("[Website](https://ics.unisg.ch/chairs/simon-mayer-interaction-and-communication-based-systems/)")
-
-# Add a Picasso-inspired decorative element
-st.markdown("""
-<div style="padding: 10px 0; margin: 20px 0; text-align: center;">
-    <div style="height: 3px; background: linear-gradient(90deg, rgba(0,0,255,0.5), rgba(255,0,0,0.5), rgba(0,255,0,0.5), rgba(255,255,0,0.5)); margin: 10px 0;"></div>
-    <div style="height: 2px; background: linear-gradient(90deg, rgba(255,0,0,0.5), rgba(0,0,255,0.5), rgba(255,255,0,0.5), rgba(0,255,0,0.5)); margin: 8px 0;"></div>
-</div>
-""", unsafe_allow_html=True)
-
-# Link to CoCoDa project
-st.markdown("""
-## CoCoDa Project
-Our work is part of the [CoCoDa project](https://snsf-cocoda.github.io/), which builds tools to open up 
-the concentration and control of data by VLOPs.
-
-The project aims to:
-- Combine technical data access methods with legal innovations like the Digital Services Act.
-- Develop techno-legal tools that empower researchers, regulators, and civil society.
-- Focus on real-world use cases in social media and mobile apps.
-""")
+# Remove decorative elements and CoCoDa project section
 
 # Workshop structure with links to subpages
 st.header("Workshop Structure")
 
 # Display the workshop sections with links
 workshop_sections = {
-    "1. Introduction": {
-        "description": "Overview of SOAP methods and objectives",
-        "time": "10 min",
-        "link": "Introduction"
+    "1. Inhalte an Flaggy melden": {
+        "description": "Wie man unangemessene Inhalte mit Flaggy meldet",
+        "time": "15 min",
+        "link": "Reporting"
     },
-    "2. Data Scraping": {
-        "description": "Techniques for collecting social media data",
-        "time": "20 min",
-        "link": "Data_Scraping"
-    },
-    "3. Deductive Coding": {
-        "description": "Automated coding of scraped data using multimodal large language models",
-        "time": "20 min",
-        "link": "Deductive_Coding"
-    },
-    "4. Interaction": {
-        "description": "Interacting with the data and analyzing results",
-        "time": "10 min",
-        "link": "Analysis"
+    "2. Inhalte mit Lehrern teilen": {
+        "description": "Bewährte Praktiken für das sichere Teilen von Inhalten mit Lehrern",
+        "time": "15 min",
+        "link": "Sharing"
     }
 }
 
@@ -190,18 +113,14 @@ for i, (section, details) in enumerate(workshop_sections.items()):
             st.subheader(section)
             st.markdown(f"**Time**: {details['time']}")
             st.markdown(f"**Description**: {details['description']}")
-            # Create a button that would typically link to the subpage
-            # In Streamlit, we don't need explicit links as the pages are in the sidebar automatically
             st.markdown(f"[Go to section →]({details['link']})")
             st.divider()
 
-
-st.header("Open this website under: https://facct-tutorial.streamlit.app")
-st.header("Find and clone the Git repo under: https://github.com/Interactions-HSG/SOAP")
+# Remove headers for website and Git repo
 
 # Brief explanation of the navigation
-st.info("👈 You can also use the sidebar to navigate between workshop sections.")
+st.info("👈 Du kannst auch die Seitenleiste verwenden, um zwischen den Workshop-Abschnitten zu navigieren.")
 
 # Footer with information about the data sources
 st.markdown("---")
-
+st.markdown("Für weitere Ressourcen besuche [www.flag-safe.ch](https://www.flag-safe.ch).")

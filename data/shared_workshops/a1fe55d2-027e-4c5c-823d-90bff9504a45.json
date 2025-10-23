@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-10-22T17:30:06.838008",
+  "sharing_option": "🎥 Nur das Video",
+  "selected_video": "Waschbär Video",
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "das ist komisch"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Du findest das Video komisch? Das verstehe ich. Es ist schon etwas Besonderes, ein Waschbär im Badezimmer zu sehen.  Was genau hat dir denn daran komisch vorgekommen? War es, wie der Waschbär an der Wand hochgeklettert ist, oder vielleicht, wie das Papier herunterfiel? Erzähl mir gerne mehr!"
+    },
+    {
+      "role": "user",
+      "content": "will ich nicht"
+    },
+    {
+      "role": "bot",
+      "content": "Oh, ich verstehe. Du möchtest vielleicht nicht genauer darüber sprechen, was du an dem Video komisch findest. Das ist total in Ordnung! Manchmal sieht man etwas, das sich einfach nicht gut anfühlt. Meinst du, du möchtest das Video vielleicht gar nicht mehr sehen, oder möchtest du nur nicht erzählen, was genau dich stört?"
+    },
+    {
+      "role": "user",
+      "content": "nein"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Das verstehe ich. Es ist völlig in Ordnung, wenn du gerade nicht darüber sprechen möchtest.  Meintest du, du möchtest das Video vielleicht lieber nicht mehr sehen? Oder wolltest du nur nicht erzählen, was dich daran komisch gefühlt hat, als der Waschbär an der Wand hochkletterte? Egal was es ist, ich bin da und höre dir zu, wenn du doch noch etwas loswerden möchtest."
+    }
+  ],
+  "username": "brave bea"
+}

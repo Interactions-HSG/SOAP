@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-10-23T08:31:15.756936",
+  "sharing_option": "🎥❤️ Video + meine Gefühle dazu",
+  "selected_video": "Crash Video",
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "ich mag das nicht"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Das verstehe ich gut, dass du das nicht magst. Es ist wirklich beunruhigend zu sehen, wie die Traktoren in dem Video umkippen, besonders wenn sie so schnell oder an so steilen Stellen fahren, wie man es bei dem roten Traktor auf der Wiese sieht. Das Schild \"reckless driving\" passt da leider sehr gut, denn so ein Fahrverhalten kann sehr gefährlich sein und viel kaputt machen. Was genau hat dich denn am meisten daran gestört?"
+    },
+    {
+      "role": "user",
+      "content": "er hat sich verletzt bestimmt"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Ja, du hast Recht, bei so einem gefährlichen Fahrstil und wenn ein Traktor umkippt, wie wir es im Video sehen, da kann man sich wirklich leicht verletzen. Es ist gut, dass du dir darüber Gedanken machst. Solche Szenen können sehr beängstigend sein. Was genau im Video hat dich denn am meisten daran glauben lassen, dass sich jemand verletzt hat?"
+    },
+    {
+      "role": "user",
+      "content": "ich will das einfach nicht mehr sehen.."
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Das verstehe ich total, dass du das Video nicht mehr sehen möchtest. Es ist wirklich schlimm, wenn man sieht, wie bei solchen Stunts die Traktoren so kaputtgehen und man sich Sorgen um die Leute macht, die dabei sein könnten. Was genau war der Moment im Video, der dir das Gefühl gegeben hat, dass du es nicht mehr sehen willst?"
+    }
+  ],
+  "username": "artiger anton "
+}

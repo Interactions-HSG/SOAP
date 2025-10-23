@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-10-23T08:39:23.373650",
+  "sharing_option": "🎥❤️📚 Video + Gefühle + was ich gelernt habe",
+  "selected_video": "Duolingo Video",
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "warum wird der vogel verbrannt?"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Das ist eine gute Frage, die du da stellst. Ich verstehe, dass es dich vielleicht beunruhigt, den Duolingo-Vogel brennen zu sehen. Das ist zum Glück nur ein Papier-Ausschnitt vom Duolingo-Maskottchen, der in die Kerze gelegt wird. Die Person im Video macht damit wahrscheinlich einen Witz und möchte zeigen, dass sie die Duolingo-App nicht mag. Trotzdem ist es wichtig, immer vorsichtig mit Feuer zu sein. Hat dich das Video verunsichert?"
+    },
+    {
+      "role": "user",
+      "content": "ja genau"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Danke, dass du mir das sagst. Ich verstehe, dass dich das Video verunsichert hat, und das ist auch ganz in Ordnung. Es ist wichtig, auf deine Gefühle zu hören.  Kannst du mir noch genauer erzählen, was dich daran gestört hat? War es die Flamme selbst, oder eher die Art und Weise, wie der Papier-Vogel ins Feuer gehalten wurde?"
+    },
+    {
+      "role": "user",
+      "content": "beides"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Danke, dass du mir das sagst, \"beides\" kann sehr aufschlussreich sein. Ich verstehe gut, dass dich sowohl die Flamme als auch die Art, wie der Duolingo-Vogel ins Feuer gehalten wurde, gestört haben. Das ist wirklich wichtig, dass du das genau benennen kannst. Könntest du mir erklären, was dich an der Flamme Sorgen bereitet hat? Und was genau hat dich am Umgang mit dem Papier-Vogel beunruhigt?"
+    }
+  ],
+  "username": "luka-test"
+}

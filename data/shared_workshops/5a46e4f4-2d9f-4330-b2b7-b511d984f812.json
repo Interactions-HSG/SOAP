@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-10-23T08:22:24.706913",
+  "sharing_option": "🎥 Nur das Video",
+  "selected_video": "KillTheBoss Video",
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "ich mag das nicht"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Das verstehe ich gut, dass du das Video nicht magst. Es zeigt ja, wie jemand immer wieder angegriffen wird und auch wie Waffen benutzt werden. Welcher Teil des Videos hat dich denn am meisten gestört? War es, wie der Boss mit Raketen oder anderen Dingen beworfen wurde, oder vielleicht die Art, wie er sich am Ende verändert hat? Erzähl mir gerne mehr darüber."
+    },
+    {
+      "role": "user",
+      "content": "das er blutet"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Danke, dass du mir das erzählst. Ich verstehe gut, dass es dich gestört hat, dass der Boss blutet. Es kann ganz schön beunruhigend sein, wenn man sieht, wie jemand verletzt wird und Blut fließt. Hat dich das Blut selbst oder eher die Vorstellung, dass ihm das wehtut, beunruhigt?"
+    },
+    {
+      "role": "user",
+      "content": "beides"
+    },
+    {
+      "role": "bot",
+      "content": "Danke, dass du mir das verrätst! Es ist total verständlich, dass dich beides gestört hat – das Blut *und* die Vorstellung, dass es ihm wehtut. Es ist nicht schön, wenn man sieht, wie jemand verletzt wird. War es besonders schlimm, weil es so viel Blut war oder weil du gesehen hast, dass der Boss sich danach anders verhalten hat?"
+    }
+  ],
+  "username": "workshop_user"
+}

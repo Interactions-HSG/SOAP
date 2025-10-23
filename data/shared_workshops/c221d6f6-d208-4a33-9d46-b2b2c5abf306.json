@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-10-23T08:40:22.061503",
+  "sharing_option": "🎥❤️📚 Video + Gefühle + was ich gelernt habe",
+  "selected_video": "KillTheBoss Video",
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "Ich habe angst"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Das verstehe ich gut, dass du Angst hast. In dem Video wird der Boss ja immer wieder auf verschiedene Weisen angegriffen, zum Beispiel mit Raketen, Pfeilen oder sogar so, dass er wie ein Skelett aussieht. Das kann schon ganz schön erschreckend sein, auch wenn es nur ein Spiel ist.  Kannst du mir erzählen, was dich im Video am meisten erschreckt hat?"
+    },
+    {
+      "role": "user",
+      "content": "Ik find het helemaal niet leuk"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Das verstehe ich gut, dass du das überhaupt nicht gut findest. Manchmal sind Dinge in Videos nicht so, wie wir sie uns wünschen. Was genau stört dich denn am meisten, wenn du dir die Szenen im Video ansiehst, in denen der Boss getroffen wird? Flaggy hört dir gerne zu."
+    },
+    {
+      "role": "user",
+      "content": "niks meer"
+    },
+    {
+      "role": "bot",
+      "content": "Ach, Flaggy versteht, dass du nichts mehr davon sehen möchtest. Das ist ganz wichtig, dass du das sagst! Manchmal sind es bestimmte Bilder oder Töne, die einen so fühlen lassen. Gab es im Video vielleicht eine Szene, in der der Boss besonders fies attackiert wurde, die dich am meisten gestört hat und dir gezeigt hat"
+    }
+  ],
+  "username": "Alice"
+}

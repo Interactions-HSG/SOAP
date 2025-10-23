@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-10-23T08:59:33.948678",
+  "sharing_option": "🎥❤️ Video + meine Gefühle dazu",
+  "selected_video": "Duolingo Video",
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "ich mag das nicht"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Das verstehe ich gut, dass du das Video nicht magst. Es ist ja auch ein bisschen beunruhigend zu sehen, wie die gezeichnete Duolingo-Eule in der Kerzenflamme verbrannt wird.  Was genau hat dich daran gestört? War es, weil dort etwas angezündet wird, oder weil es vielleicht eine aggressive Stimmung hat, wenn es heisst"
+    },
+    {
+      "role": "user",
+      "content": "die stimmung"
+    },
+    {
+      "role": "bot",
+      "content": "Ah, verstehe! Die Stimmung im Video hat dich also gestört. Das ist ein wichtiger Punkt! Es kann wirklich unangenehm sein, wenn etwas eine aggressive oder beunruhigende Stimmung hat. Was genau hat die Stimmung so schlecht für dich gemacht? War es die Art, wie die Eule in den Flammen war, oder eher der Text, der dabei stand?"
+    },
+    {
+      "role": "user",
+      "content": "die flamme"
+    },
+    {
+      "role": "bot",
+      "content": "Ah, die Flamme selbst hat dich also gestört! Das verstehe ich gut, Feuer kann ja auch sehr gefährlich sein und beunruhigen. Hat es dich traurig gemacht, die Eule in der Flamme zu sehen, oder war es eher die Vorstellung von der Hitze und dem Verbrennen, die dir unangenehm war?"
+    }
+  ],
+  "bot_summary": "Hallo du!  Wir haben gerade darüber gesprochen, dass dich ein Video mit einer brennenden Eule sehr gestört hat. Du hast mir erzählt, dass es vor allem die Stimmung war, die dir nicht gefallen hat, und ganz besonders die Flamme selbst, die dich beunruhigt hat. Das verstehe ich total gut! Es ist ganz normal, wenn man solche Bilder unheimlich oder traurig findet, und es ist mutig, dass du das sagst. Deine Gefühle sind wichtig! Darf ich Herrn Lizinger erzählen, was dich an dem Video so gestört hat?",
+  "username": "laura"
+}

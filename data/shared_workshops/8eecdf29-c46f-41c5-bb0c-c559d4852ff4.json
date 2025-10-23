@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-10-23T08:22:47.326480",
+  "sharing_option": "🎥❤️📚 Video + Gefühle + was ich gelernt habe",
+  "selected_video": "Duolingo Video",
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "Ich mag das nicht"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Ich bin Flaggy. Es ist völlig in Ordnung, wenn dir etwas nicht gefällt, was du online siehst. Ich verstehe, dass dich dieses Video gestört hat.  Kannst du mir erzählen, was genau dich daran gestört hat, wie die kleine Duolingo-Eule in der Kerze verbrannt wurde? Ich helfe dir gerne, wenn du darüber sprechen möchtest."
+    },
+    {
+      "role": "user",
+      "content": "Das sie brennt"
+    },
+    {
+      "role": "bot",
+      "content": "Ja, ich verstehe, dass es gar nicht schön ist, die kleine Duolingo-Eule brennen zu sehen. Das kann sich wirklich schlimm anfühlen, wenn man so etwas im Video sieht. Was genau hat dich dabei besonders traurig oder vielleicht sogar wütend gemacht, als die Eule in der Kerze verbrannt ist?"
+    },
+    {
+      "role": "user",
+      "content": "Alles"
+    },
+    {
+      "role": "bot",
+      "content": "Ja, das verstehe ich gut. Es ist wirklich unangenehm, wenn man sieht, wie die kleine Duolingo-Eule im Video brennt. Das kann einen wirklich traurig oder sogar wütend machen. Hat dich vielleicht die Vorstellung, dass es der Eule wehtut, besonders gestört, als du das Feuer um sie herum gesehen hast?"
+    }
+  ],
+  "username": "Peter pan"
+}

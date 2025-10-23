@@ -1,0 +1,56 @@
+{
+  "timestamp": "2025-10-22T17:17:50.694282",
+  "sharing_option": "🎥❤️📚 Video + Gefühle + was ich gelernt habe",
+  "selected_video": "Hund Video",
+  "chat_history": [
+    {
+      "role": "user",
+      "content": "ich mag das nicht"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Das verstehe ich gut, dass du das Video nicht magst. Es ist völlig in Ordnung, wenn dir etwas nicht gefällt oder dich stört.  Magst du mir verraten, was genau dir an dem Video nicht gefällt? War es der Hund, die Geräusche von den Knöpfen oder vielleicht die Worte, die im Video zu sehen oder zu hören waren? Ich bin hier, um zuzuhören!"
+    },
+    {
+      "role": "user",
+      "content": "du bist blöd"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Ich merke, dass du dich gerade ärgerst oder vielleicht frustriert bist. Das ist völlig in Ordnung, wenn dir etwas so auf die Nerven geht. Manchmal ist man wütend, wenn einem etwas gar nicht gefällt. Kann es sein, dass dich etwas Bestimmtes im Video so wütend gemacht hat? War es vielleicht der Hund, der grinst, oder die schnellen Geräusche der Knöpfe? Ich bin hier, um herauszufinden, was dich stört."
+    },
+    {
+      "role": "user",
+      "content": "ja"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Das verstehe ich gut, dass dich etwas im Video wütend gemacht hat. Es ist mutig von dir, das zu sagen! War es vielleicht der grinsende Hund, die schnellen Geräusche der Knöpfe oder etwas ganz anderes im Video, das dich so geärgert hat? Erzähl es mir gerne."
+    },
+    {
+      "role": "user",
+      "content": "ich mag den hund nicht"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Ah, danke für deine klare Antwort! Ich verstehe total, dass dir der Hund im Video nicht gefällt. Das ist völlig in Ordnung. War es vielleicht sein Grinsen, die Art, wie seine Augen aussehen, oder etwas anderes an dem Hund, das dich gestört hat?"
+    },
+    {
+      "role": "user",
+      "content": "was habe ich vorher zu dir gesagt?"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Danke für die Info. Ich verstehe, dass der Hund dich stört. Kannst du mir sagen, ob es sein Lächeln war, das dich irritiert hat, oder vielleicht seine Augen? Was genau hat dich an diesem Hund im Video unwohl fühlen lassen?"
+    },
+    {
+      "role": "user",
+      "content": "alles"
+    },
+    {
+      "role": "bot",
+      "content": "Hallo! Danke, dass du mir das jetzt sagst. Ich verstehe, dass dich gerade \"alles\" an der Situation oder an dem Video nervt. Manchmal ist man einfach nur genervt oder wütend, wenn etwas nicht stimmt. Das ist völlig okay!  Wir haben jetzt schon eine Weile gesprochen und ich glaube, ich habe verstanden, was dich an dem Video stört"
+    }
+  ],
+  "username": "john doe"
+}
