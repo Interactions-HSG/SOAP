@@ -9,6 +9,6 @@ pyktok
 python-dotenv
 pillow
 imageio
-pandas==1.5.3
+pandas>=2.0
 plotly
 vertexai
